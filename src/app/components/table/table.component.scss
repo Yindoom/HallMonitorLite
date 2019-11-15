@@ -1,0 +1,27 @@
+.table {
+  margin: 10px;
+  width: 100%;
+}
+
+#drag:hover {
+  cursor: pointer;
+  background-color: #eeeeee;
+}
+
+.orderHeader {
+  cursor: pointer;
+}
+
+.orderHeader:hover {
+  background-color: whitesmoke;
+}
+
+.table-cell {
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+

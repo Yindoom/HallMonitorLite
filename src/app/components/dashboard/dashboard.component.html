@@ -1,0 +1,29 @@
+<!--<button mat-raised-button (click)="toggleNav()">
+    <mat-icon>menu_open</mat-icon>
+</button>
+<br>
+-->
+<div id="deviceList">
+    <mat-selection-list *ngIf="devices">
+        <mat-list-option *ngFor="let device of devices | async">
+            <div class="tooltip">
+                {{device.id}}
+                <span class="tooltiptext">{{device.comment}}</span>
+            </div>
+        </mat-list-option>
+    </mat-selection-list>
+</div>
+
+<div id="chartStat">
+    <kendo-pdf-export #pdf>
+        <div style="display: block">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+        </div>
+    </kendo-pdf-export>
+</div>
+
+<button kendo-button (click)="pdf.saveAs('barChart.pdf')">
+    Export As PDF
+</button> 

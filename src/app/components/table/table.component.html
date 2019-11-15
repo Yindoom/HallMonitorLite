@@ -1,0 +1,54 @@
+<div class="panel-body" align="center">
+
+    <table>
+        <thead style="background-color: #f2f2f2">
+            <tr role="row">
+                <th>
+                    ID
+                </th>
+                <th>
+                    nr of ppl
+                </th>
+                <th>
+                    TimeStamp
+                </th>
+                <th>
+                    Device id
+                </th>
+                <th>
+                    CPU Temperature
+                </th>
+            </tr>
+        </thead>
+
+        <tbody *ngIf="deviceOutputs">
+            <tr *ngFor="let output of deviceOutputs" id="drag" role="row" (click)="setOutput(output)">
+                <td class="clickable-row">
+                    <div class="table-cell">
+                        {{output.id}}
+                    </div>
+                </td>
+                <td class="clickable-row">
+                    <div class="table-cell">
+                        {{output.number_of_people}}
+                    </div>
+                </td>
+                <td class="clickable-row">
+                    <div class="table-cell">
+                        {{output.timestamp}}
+                    </div>
+                </td>
+                <td class="clickable-row">
+                    <div class="table-cell ">
+                        {{output.device_id}}
+                    </div>
+                </td>
+                <td class="clickable-row">
+                    <div class="table-cell">
+                        {{output.temperature}}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
