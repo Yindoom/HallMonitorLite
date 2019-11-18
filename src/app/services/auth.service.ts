@@ -8,7 +8,7 @@ import decode from 'jwt-decode';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': 'my-auth-token'
+    Authorization: 'my-auth-token'
   })
 };
 
@@ -18,13 +18,12 @@ const httpOptions = {
 export class AuthService {
   constructor(
     private connection: ConnectionService,
-    private http: HttpClient,
+    private http: HttpClient
   ) {}
 
   apiUrl = this.connection.getConnectionUrl();
 
   login(dto: LoginDTO): Observable<any> {
-
     return this.http.post<any>(this.apiUrl + 'login', dto);
   }
 
@@ -32,9 +31,16 @@ export class AuthService {
     return localStorage.getItem('access-token');
   }
 
+  getRefreshToken() {
+    return localStorage.getItem('refresh-token');
+  }
+
   refresh() {
     localStorage.removeItem('access-token');
-    httpOptions.headers = httpOptions.headers.set('Authorization', 'Bearer '+ this.getToken())
+    httpOptions.headers = httpOptions.headers.set(
+      'Authorization',
+      'Bearer ' + this.getToken()
+    );
     return this.http.get<any>(this.apiUrl + 'refresh', httpOptions);
   }
 
@@ -43,8 +49,15 @@ export class AuthService {
     const decoded = decode(token);
     const role = decoded.user_claims['role'];
     debugger;
-    const isAdmin = role === 'Admin'
-    return(isAdmin);
+    const isAdmin = role === 'Admin';
+    return isAdmin;
+  }
+
+  getHttpOptions() {
+    httpOptions.headers = httpOptions.headers.set(
+      'Authorization',
+      'Bearer ' + this.getToken()
+    );
+    return httpOptions;
   }
 }
-

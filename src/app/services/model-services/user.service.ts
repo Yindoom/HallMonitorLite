@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ConnectionService} from '../connection.service';
 import {Observable} from 'rxjs';
 import {User} from '../../shared/models/user.model';
+import { AuthService } from '../auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import {User} from '../../shared/models/user.model';
 export class UserService {
 private apiUrl;
   constructor(private httpClient: HttpClient,
-              private connectionService: ConnectionService) {
+              private connectionService: ConnectionService,
+              private authService: AuthService) {
     this.apiUrl = this.connectionService.getConnectionUrl() + 'user';
   }
   getUsers(): Observable<User[]> {
@@ -24,13 +26,15 @@ private apiUrl;
   }
 
   createUser(user: User) {
+    const options = this.authService.getHttpOptions();
     return this.httpClient
-      .post<User>(this.apiUrl, JSON.stringify(user));
+      .post<User>(this.apiUrl, JSON.stringify(user), options);
   }
 
-  updateUser(user: User) {
+  updateUser(id, user: User) {
+    const options = this.authService.getHttpOptions();
     return this.httpClient
-      .put<User>(this.apiUrl + '?id=' + user.id, JSON.stringify(user));
+      .put<User>(this.apiUrl + '?id=' + id, JSON.stringify(user), options);
   }
 
   deleteUser(id: string) {

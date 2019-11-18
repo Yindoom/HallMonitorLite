@@ -45,6 +45,11 @@ export class UserCreateUpdateComponent implements OnInit {
   }
 
   userUpdateCreate() {
-    this.dialogRef.close();
+    const u: User = this.userForm.value;
+    if(this.edit) {
+      this.userService.updateUser(this.user.id, u).subscribe(() => this.dialogRef.close()); 
+    } else {
+      this.userService.createUser(u).subscribe(() => this.dialogRef.close())
+    }
   }
 }
