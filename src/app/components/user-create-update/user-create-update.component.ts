@@ -16,6 +16,8 @@ export class UserCreateUpdateComponent implements OnInit {
     password: new FormControl('')
   });
 
+  btnMessage: String = 'Create';
+
   user: User;
   edit: boolean;
 
@@ -30,6 +32,7 @@ export class UserCreateUpdateComponent implements OnInit {
     this.edit = this.data.edit;
 
     if (this.edit) {
+      this.btnMessage = 'Update';
       this.patchValues(this.user);
     }
   }
@@ -39,5 +42,9 @@ export class UserCreateUpdateComponent implements OnInit {
       email: user.email,
       username: user.username
     })
+  }
+
+  userUpdateCreate() {
+    this.dialogRef.close();
   }
 }
