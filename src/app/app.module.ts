@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgxsModule } from '@ngxs/store';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,6 +29,7 @@ import { MatNativeDateModule, MatDialogModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import {UserState} from './ngxs/state/user.state';
 
 
 @NgModule({
@@ -62,7 +64,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxsModule.forRoot([UserState])
   ],
   entryComponents: [ UserCreateUpdateComponent ],
   providers: [],
