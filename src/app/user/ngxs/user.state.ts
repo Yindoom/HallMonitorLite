@@ -1,7 +1,7 @@
 import {State, Action, StateContext, Selector} from '@ngxs/store';
-import {User} from '../../shared/models/user.model';
-import {UserService} from '../../services/model-services/user.service';
-import {AddUser, GetById, GetUsers, RemoveUser, UpdateUser} from '../actions/user.actions';
+import {User} from '../user.model';
+import {UserService} from '../user.service';
+import {AddUser, GetById, GetUsers, RemoveUser, UpdateUser} from './user.actions';
 
 export class UserStateModel {
   users: User[];
@@ -47,16 +47,23 @@ export class UserState {
     this.userService.deleteUser(id).subscribe(() => {
       const state = getState();
       patchState({
-        users: state.users.filter(user => {
-          return user.id != id;
-        })
+        users: state.users.filter(user => user.id != id )
       });
     });
   }
 
   @Action(UpdateUser)
   update({getState, patchState}: StateContext<UserStateModel>, {id, payload}: UpdateUser) {
-    this.userService.updateUser(id, payload).subscribe(() => console.log('Successfully updated user with id: ' + id));
+    this.userService.updateUser(id, payload).subscribe(() => {
+      const state = getState();
+      const index = state.users.findIndex(u => u.id === id);
+
+      payload.id = id;
+      state.users[index] = payload;
+      patchState({
+        users: [...state.users]
+      })
+    })
   }
 
   @Action(GetUsers)

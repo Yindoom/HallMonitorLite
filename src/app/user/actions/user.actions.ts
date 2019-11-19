@@ -1,4 +1,4 @@
-import {User} from '../../shared/models/user.model';
+import {User} from '../user.model';
 
 // do we need to set the user? also should USER be in all caps?
 

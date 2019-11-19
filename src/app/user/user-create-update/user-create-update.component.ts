@@ -1,12 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { UserService } from 'src/app/services/model-services/user.service';
-import { User } from 'src/app/shared/models/user.model';
+import { UserService } from 'src/app/user/user.service';
+import { User } from 'src/app/user/user.model';
 import {Select, Store} from '@ngxs/store'
-import {UserState} from '../../ngxs/state/user.state';
+import {UserState} from '../ngxs/user.state';
 import {Observable} from 'rxjs';
-import {AddUser, GetUsers, RemoveUser, UpdateUser} from '../../ngxs/actions/user.actions';
+import {AddUser, GetUsers, RemoveUser, UpdateUser} from '../ngxs/actions/user.actions';
 
 @Component({
   selector: 'app-user-create-update',
