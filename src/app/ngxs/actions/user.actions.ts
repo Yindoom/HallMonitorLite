@@ -11,23 +11,23 @@ export class AddUser{
 export class UpdateUser{
   static readonly type = '[User] Update';
 
-  constructor(public payload: User) {}
+  constructor(public id: number, public payload: User) {}
 }
 
 export class RemoveUser{
   static readonly type = '[User] Remove';
 
-  constructor(public payload: string) {}
+  constructor(public id: number) {}
 }
 
 export class GetUsers{
   static readonly type = '[User] Get';
 
-  constructor(public payload: User[]) {}
+  constructor() {}
 }
 
-export class GetUserById{
+export class GetById{
   static readonly type = '[User] Get';
 
-  constructor(public id: string) {}
+  constructor(public id: number) {}
 }

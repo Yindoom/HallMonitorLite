@@ -1,8 +1,8 @@
 <div *ngIf="userList">
     <ul>
         <li *ngFor="let user of userList | async">
-            <p>{{user.id}} {{user.username}} {{user.role}}</p>
-            <button mat-mini-fab color="primary" (click)="updateUser(user)">
+            <p>{{user.id}} {{user.email}} {{user.role}}</p>
+            <button mat-mini-fab color="primary" (click)="updateUser(user.id)">
                 <mat-icon>edit</mat-icon>
             </button>
             <button mat-mini-fab color="warn" (click)="deleteUser(user.id)">

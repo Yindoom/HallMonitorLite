@@ -20,7 +20,7 @@ export class DeviceOutputService {
       .get<DeviceOutput[]>(this.apiUrl);
   }
 
-  getDeviceOutputById(id: string): Observable<DeviceOutput> {
+  getDeviceOutputById(id: number): Observable<DeviceOutput> {
     return this.httpClient
       .get<DeviceOutput>(this.apiUrl + '?id=' + id);
   }

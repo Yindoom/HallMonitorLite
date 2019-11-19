@@ -20,7 +20,7 @@ private apiUrl;
       .get<User[]>(this.apiUrl);
   }
 
-  getUserById(id: string): Observable<User> {
+  getUserById(id: number): Observable<User> {
     return this.httpClient
       .get<User>(this.apiUrl + '?id=' + id);
   }
@@ -37,8 +37,9 @@ private apiUrl;
       .put<User>(this.apiUrl + '?id=' + id, JSON.stringify(user), options);
   }
 
-  deleteUser(id: string) {
+  deleteUser(id: number) {
+    const options = this.authService.getHttpOptions();
     return this.httpClient
-      .delete<User>(this.apiUrl + '?id=' + id);
+      .delete<User>(this.apiUrl + '?id=' + id, options);
   }
 }

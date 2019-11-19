@@ -3,6 +3,10 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { UserService } from 'src/app/services/model-services/user.service';
 import { User } from 'src/app/shared/models/user.model';
+import {Select, Store} from '@ngxs/store'
+import {UserState} from '../../ngxs/state/user.state';
+import {Observable} from 'rxjs';
+import {AddUser, GetUsers, RemoveUser, UpdateUser} from '../../ngxs/actions/user.actions';
 
 @Component({
   selector: 'app-user-create-update',
@@ -24,16 +28,21 @@ export class UserCreateUpdateComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<UserCreateUpdateComponent>,
-    private userService: UserService
+    private store: Store
   ) {}
 
+  @Select(UserState.getUserById) editUser: Observable<User>;
+
   ngOnInit() {
-    this.user = this.data.user;
     this.edit = this.data.edit;
 
     if (this.edit) {
       this.btnMessage = 'Update';
-      this.patchValues(this.user);
+      this.editUser.subscribe(user=>{
+        this.user = user;
+        this.patchValues(this.user);
+      });
+
     }
   }
 
@@ -47,9 +56,10 @@ export class UserCreateUpdateComponent implements OnInit {
   userUpdateCreate() {
     const u: User = this.userForm.value;
     if(this.edit) {
-      this.userService.updateUser(this.user.id, u).subscribe(() => this.dialogRef.close()); 
+      this.store.dispatch(new UpdateUser(this.user.id, u)).subscribe( () => this.dialogRef.close());
     } else {
-      this.userService.createUser(u).subscribe(() => this.dialogRef.close())
+      this.store.dispatch(new AddUser(u)).subscribe(()=> this.dialogRef.close());
+      this.store.dispatch(new GetUsers());
     }
   }
 }
