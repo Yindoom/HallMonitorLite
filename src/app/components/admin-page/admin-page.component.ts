@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/user/user.model';
-import { UserService } from 'src/app/user/user.service';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/model-services/user.service';
 import { MatDialog } from '@angular/material';
-import { UserCreateUpdateComponent } from '../../user/user-create-update/user-create-update.component';
+import { UserCreateUpdateComponent } from '../user-create-update/user-create-update.component';
 import {Store, Select} from '@ngxs/store'
-import {GetById, GetUsers, RemoveUser} from '../../user/ngxs/actions/user.actions';
-import {UserState} from '../../user/ngxs/user.state';
+import {GetById, GetUsers, RemoveUser} from '../../ngxs/user.actions';
+import {UserState} from '../../ngxs/user.state';
 import {RemoveHashPlugin} from '@angular-devkit/build-angular/src/angular-cli-files/plugins/remove-hash-plugin';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { LoginDTO } from 'src/app/shared/models/loginDTO.model';
+import { LoginDTO } from 'src/app/models/loginDTO.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';

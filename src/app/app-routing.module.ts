@@ -4,7 +4,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { TableComponent } from './components/table/table.component';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
-import { UserDetailsComponent } from './user/user-details/user-details.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 
 const routes: Routes = [

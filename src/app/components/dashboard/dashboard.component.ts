@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SidenavService } from 'src/app/shared/sidenav/sidenav.service';
 import { DeviceOutputService } from 'src/app/services/model-services/device-output.service';
 import { DeviceService } from 'src/app/services/model-services/device.service';
 import { MatSnackBar, ShowOnDirtyErrorStateMatcher } from '@angular/material';
 import { Observable } from 'rxjs';
-import { Device } from 'src/app/shared/models/device.model';
-import { DeviceOutput } from 'src/app/shared/models/deviceOutput.model';
+import { Device } from 'src/app/models/device.model';
+import { DeviceOutput } from 'src/app/models/deviceOutput.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +20,6 @@ export class DashboardComponent implements OnInit {
   public barChartLegend = true;
 
   constructor(
-    private navService: SidenavService,
     private deviceOutputService: DeviceOutputService,
     private deviceService: DeviceService,
     private snackBar: MatSnackBar

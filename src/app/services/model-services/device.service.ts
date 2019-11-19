@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ConnectionService} from '../connection.service';
-import {Device} from '../../shared/models/device.model';
+import {Device} from '../../models/device.model';
 import {Observable} from 'rxjs';
-import {DeviceOutput} from '../../shared/models/deviceOutput.model';
+import {DeviceOutput} from '../../models/deviceOutput.model';
 
 @Injectable({
   providedIn: 'root'

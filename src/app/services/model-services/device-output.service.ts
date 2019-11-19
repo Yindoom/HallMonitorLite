@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ConnectionService} from '../connection.service';
-import {DeviceOutput} from '../../shared/models/deviceOutput.model';
+import {DeviceOutput} from '../../models/deviceOutput.model';
 import {Observable} from 'rxjs';
-import {DateInterval} from '../../shared/models/dateInterval.model';
+import {DateInterval} from '../../models/dateInterval.model';
 
 @Injectable({
   providedIn: 'root'
