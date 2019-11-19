@@ -12,6 +12,7 @@ import { DeviceCreateUpdateComponent } from './components/device-create-update/d
 import { DeviceoutputCreateUpdateComponent } from './components/deviceoutput-create-update/deviceoutput-create-update.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { DeviceComponent } from './components/device/device.component';
 
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { ChartsModule } from 'ng2-charts';
@@ -28,8 +29,7 @@ import { MatNativeDateModule, MatDialogModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import {UserState} from './ngxs/user.state';
-
+import { UserState } from './ngxs/user.state';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,8 @@ import {UserState} from './ngxs/user.state';
     DeviceCreateUpdateComponent,
     DeviceoutputCreateUpdateComponent,
     UserDetailsComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    DeviceComponent
   ],
   imports: [
     BrowserModule,

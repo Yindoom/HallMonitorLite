@@ -1,0 +1,17 @@
+<div *ngIf="deviceList">
+  <ul>
+    <li *ngFor="let device of deviceList | async">
+      <p>{{device.id}}</p>
+      <button mat-mini-fab color="primary" (click)="updateDevice(device.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-mini-fab color="warn" (click)="deleteDevice(device.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </li>
+  </ul>
+</div>
+
+<button mat-mini-fab id="createBtn" (click)="createDevice()">
+  <mat-icon>add</mat-icon>
+</button>

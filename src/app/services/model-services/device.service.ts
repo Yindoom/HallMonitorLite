@@ -29,9 +29,9 @@ export class DeviceService {
       .post<Device>(this.apiUrl, JSON.stringify(device));
   }
 
-  updateDevice(device: Device) {
+  updateDevice(id, device: Device) {
     return this.httpClient
-      .put<Device>(this.apiUrl + '?id=' + device.id, JSON.stringify(device));
+      .put<Device>(this.apiUrl + '?id=' + id, JSON.stringify(device));
   }
 
   deleteDevice(device: Device) {

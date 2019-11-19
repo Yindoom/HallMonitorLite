@@ -35,13 +35,13 @@ export class DeviceOutputService {
       .post<DeviceOutput>(this.apiUrl, JSON.stringify(output));
   }
 
-  updateDeviceOutput(output: DeviceOutput) {
+  updateDeviceOutput(id, output: DeviceOutput) {
     return this.httpClient
       .put<DeviceOutput>(this.apiUrl + '?id=' + output.id, output);
   }
 
-  deleteDeviceOutput(output: DeviceOutput) {
+  deleteDeviceOutput(id: number) {
     return this.httpClient
-      .delete<DeviceOutput>(this.apiUrl + '?id=' + output.id);
+      .delete<DeviceOutput>(this.apiUrl + '?id=' + id);
   }
 }
