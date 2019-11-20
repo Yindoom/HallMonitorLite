@@ -34,8 +34,8 @@ export class DeviceService {
       .put<Device>(this.apiUrl + '?id=' + id, JSON.stringify(device));
   }
 
-  deleteDevice(device: Device) {
+  deleteDevice(id: number) {
     return this.httpClient
-      .delete<Device>(this.apiUrl + '?id=' + device.id);
+      .delete<Device>(this.apiUrl + '?id=' + id);
   }
 }

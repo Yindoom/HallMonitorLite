@@ -30,7 +30,7 @@ export class DeviceOutputService {
       .post<DeviceOutput[]>(this.apiUrl + '/getbydate', dates);
   }
 
-  createDeviceOutput(output: DeviceOutput) {
+  addDeviceOutput(output: DeviceOutput) {
     return this.httpClient
       .post<DeviceOutput>(this.apiUrl, JSON.stringify(output));
   }
@@ -40,7 +40,7 @@ export class DeviceOutputService {
       .put<DeviceOutput>(this.apiUrl + '?id=' + output.id, output);
   }
 
-  deleteDeviceOutput(id: number) {
+  removeDeviceOutput(id: number) {
     return this.httpClient
       .delete<DeviceOutput>(this.apiUrl + '?id=' + id);
   }

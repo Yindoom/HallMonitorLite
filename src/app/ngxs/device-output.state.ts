@@ -31,9 +31,9 @@ export class DeviceOutputState {
     return state.deviceOutput;
   }
 
-  @Action(AddDeviceOutputs)
+  @Action(AddDeviceOutput)
   add({getState, patchState}: StateContext<DeviceOutputStateModel>, {payload}: AddDeviceOutput) {
-    this.deviceOutputService.createDeviceOutput(payload).subscribe(() => {
+    this.deviceOutputService.addDeviceOutput(payload).subscribe(() => {
       const state = getState();
       patchState({
         deviceOutputs: [...state.deviceOutputs, payload]
@@ -43,7 +43,7 @@ export class DeviceOutputState {
 
   @Action(RemoveDeviceOutput)
   remove({getState, patchState}: StateContext<DeviceOutputStateModel>, {id}: RemoveDeviceOutput) {
-    this.deviceOutputService.deleteDeviceOutput(id).subscribe(() => {
+    this.deviceOutputService.removeDeviceOutput(id).subscribe(() => {
       const state = getState();
       patchState({
         deviceOutputs: state.deviceOutputs.filter(deviceOutput => deviceOutput.id != id )
@@ -78,7 +78,7 @@ export class DeviceOutputState {
   getById({getState, patchState}: StateContext<DeviceOutputStateModel>, {id}: GetById) {
     const state = getState();
     patchState({
-      deviceOutput: state.deviceOutput.find(o => o.id === id)
+      deviceOutput: state.deviceOutputs.find(o => o.id === id)
     });
   }
 }

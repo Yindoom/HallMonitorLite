@@ -1,7 +1,7 @@
 import {State, Action, StateContext, Selector} from '@ngxs/store';
 import {Device} from '../models/device.model';
 import {DeviceService} from '../services/model-services/device.service';
-import {GetById, GetDevices, UpdateDevice} from './device.actions';
+import {AddDevice, GetById, GetDevices, RemoveDevice, UpdateDevice} from './device.actions';
 
 export class DeviceStateModel {
   devices: Device[];
@@ -31,8 +31,8 @@ export class DeviceState {
     return state.device;
   }
 
-  @Action(AddDevices)
-  add({getState, patchState}: StateContext<DeviceStateModel>, {payload}: AddDevices) {
+  @Action(AddDevice)
+  add({getState, patchState}: StateContext<DeviceStateModel>, {payload}: AddDevice) {
     this.deviceService.createDevice(payload).subscribe(() => {
       const state = getState();
       patchState({
@@ -41,8 +41,8 @@ export class DeviceState {
     });
   }
 
-  @Action(RemoveDevices)
-  remove({getState, patchState}: StateContext<DeviceStateModel>, {id}: RemoveDevices) {
+  @Action(RemoveDevice)
+  remove({getState, patchState}: StateContext<DeviceStateModel>, {id}: RemoveDevice) {
     this.deviceService.deleteDevice(id).subscribe(() => {
       const state = getState();
       patchState({
