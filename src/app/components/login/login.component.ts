@@ -16,14 +16,16 @@ export class LoginComponent implements OnInit {
     password: new FormControl('')
   });
 
-  constructor(private service: AuthService, private router: Router, private snack: MatSnackBar) {}
+  constructor(private authService: AuthService,
+              private router: Router,
+              private snack: MatSnackBar) {}
 
   ngOnInit() {}
 
   login() {
     const dto: LoginDTO = this.loginForm.value;
 
-    this.service.login(dto).subscribe(
+    this.authService.login(dto).subscribe(
       token => {
         localStorage.setItem('access-token', token.access_token);
         localStorage.setItem('refresh-token', token.refresh_token);

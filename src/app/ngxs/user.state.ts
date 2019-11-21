@@ -1,7 +1,7 @@
 import {State, Action, StateContext, Selector} from '@ngxs/store';
 import {User} from '../models/user.model';
 import {UserService} from '../services/model-services/user.service';
-import {AddUser, GetById, GetUsers, RemoveUser, UpdateUser} from './user.actions';
+import {AddUser, GetById, GetUserByIdFromDB, GetUsers, RemoveUser, UpdateUser} from './user.actions';
 
 export class UserStateModel {
   users: User[];
@@ -72,7 +72,6 @@ export class UserState {
         users: userResults,
       });
     });
-
   }
 
   @Action(GetById)
@@ -80,6 +79,15 @@ export class UserState {
     const state = getState();
     patchState({
       user: state.users.find(u => u.id === id)
+    });
+  }
+
+  @Action(GetUserByIdFromDB)
+  getUserById({getState, patchState}: StateContext<UserStateModel>, {id}: GetUserByIdFromDB) {
+    this.userService.getUserById(id).subscribe(u => {
+      patchState({
+        user: u
+      });
     });
   }
 }

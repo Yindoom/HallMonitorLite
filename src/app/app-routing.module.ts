@@ -12,8 +12,8 @@ const routes: Routes = [
   {path: '', component: DashboardComponent},
   {path: 'login', component: LoginComponent},
   {path: 'table', component: TableComponent},
-  {path: 'admin', component: AdminPageComponent},
   {path: 'user', component: UserDetailsComponent},
+  {path: 'admin', component: AdminPageComponent},
   {path: 'devices', component: DeviceComponent},
   {path: 'deviceOutputs', component: DeviceOutputComponent}
 ];

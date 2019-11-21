@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { ConnectionService } from './connection.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { LoginDTO } from '../models/loginDTO.model';
+import {Injectable} from '@angular/core';
+import {ConnectionService} from './connection.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {LoginDTO} from '../models/loginDTO.model';
 import decode from 'jwt-decode';
 
 const httpOptions = {
@@ -48,7 +48,6 @@ export class AuthService {
     const token = localStorage.getItem('access-token');
     const decoded = decode(token);
     const role = decoded.user_claims['role'];
-    debugger;
     const isAdmin = role === 'Admin';
     return isAdmin;
   }
@@ -59,5 +58,12 @@ export class AuthService {
       'Bearer ' + this.getToken()
     );
     return httpOptions;
+  }
+
+  getLoggedInUserId() {
+    const token = localStorage.getItem('access-token');
+    const decoded = decode(token);
+    console.log(decoded.user_claims['id']);
+    return decoded.user_claims['id'];
   }
 }
