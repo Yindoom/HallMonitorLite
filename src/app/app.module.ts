@@ -27,7 +27,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule, MatDialogModule} from '@angular/material';
+import {MatNativeDateModule, MatDialogModule, MatToolbarModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
@@ -35,6 +35,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {UserState} from './ngxs/user.state';
 import {DeviceOutputState} from './ngxs/device-output.state';
 import {DeviceState} from './ngxs/device.state';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {DeviceState} from './ngxs/device.state';
     UserDetailsComponent,
     AdminPageComponent,
     DeviceComponent,
-    DeviceOutputComponent
+    DeviceOutputComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +72,7 @@ import {DeviceState} from './ngxs/device.state';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatToolbarModule,
     NgxsModule.forRoot([UserState, DeviceState, DeviceOutputState])
   ],
   entryComponents: [UserCreateUpdateComponent, DeviceCreateUpdateComponent, DeviceOutputCreateUpdateComponent],
