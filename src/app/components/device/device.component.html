@@ -1,7 +1,7 @@
 <div *ngIf="deviceList">
   <ul>
     <li *ngFor="let device of deviceList | async">
-      <p>{{device.id}}</p>
+      <p>{{device.id}} {{device.comment}}</p>
       <button mat-mini-fab color="primary" (click)="updateDevice(device.id)">
         <mat-icon>edit</mat-icon>
       </button>

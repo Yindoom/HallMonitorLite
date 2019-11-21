@@ -1,35 +1,40 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { NgxsModule } from '@ngxs/store';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {NgxsModule} from '@ngxs/store';
 
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LoginComponent } from './components/login/login.component';
-import { TableComponent } from './components/table/table.component';
-import { UserCreateUpdateComponent } from './components/user-create-update/user-create-update.component';
-import { DeviceCreateUpdateComponent } from './components/device-create-update/device-create-update.component';
-import { DeviceoutputCreateUpdateComponent } from './components/deviceoutput-create-update/deviceoutput-create-update.component';
-import { UserDetailsComponent } from './components/user-details/user-details.component';
-import { AdminPageComponent } from './components/admin-page/admin-page.component';
-import { DeviceComponent } from './components/device/device.component';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {LoginComponent} from './components/login/login.component';
+import {TableComponent} from './components/table/table.component';
+import {UserCreateUpdateComponent} from './components/user-create-update/user-create-update.component';
+import {DeviceCreateUpdateComponent} from './components/device-create-update/device-create-update.component';
+import {UserDetailsComponent} from './components/user-details/user-details.component';
+import {AdminPageComponent} from './components/admin-page/admin-page.component';
+import {DeviceComponent} from './components/device/device.component';
+import {DeviceOutputComponent} from './components/device-output/device-output.component';
+import {DeviceOutputCreateUpdateComponent} from './components/device-output-create-update/device-output-create-update.component';
 
-import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
-import { ChartsModule } from 'ng2-charts';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
-import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, MatDialogModule } from '@angular/material';
-import { MatIconModule } from '@angular/material/icon';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
-import { UserState } from './ngxs/user.state';
+
+import {PDFExportModule} from '@progress/kendo-angular-pdf-export';
+import {ChartsModule} from 'ng2-charts';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule, MatDialogModule} from '@angular/material';
+import {MatIconModule} from '@angular/material/icon';
+import {HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from './app-routing.module';
+
+import {UserState} from './ngxs/user.state';
+import {DeviceOutputState} from './ngxs/device-output.state';
+import {DeviceState} from './ngxs/device.state';
 
 @NgModule({
   declarations: [
@@ -39,10 +44,11 @@ import { UserState } from './ngxs/user.state';
     TableComponent,
     UserCreateUpdateComponent,
     DeviceCreateUpdateComponent,
-    DeviceoutputCreateUpdateComponent,
+    DeviceOutputCreateUpdateComponent,
     UserDetailsComponent,
     AdminPageComponent,
-    DeviceComponent
+    DeviceComponent,
+    DeviceOutputComponent
   ],
   imports: [
     BrowserModule,
@@ -64,10 +70,11 @@ import { UserState } from './ngxs/user.state';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
-    NgxsModule.forRoot([UserState])
+    NgxsModule.forRoot([UserState, DeviceState, DeviceOutputState])
   ],
-  entryComponents: [ UserCreateUpdateComponent ],
+  entryComponents: [UserCreateUpdateComponent, DeviceCreateUpdateComponent, DeviceOutputCreateUpdateComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

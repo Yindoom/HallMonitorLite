@@ -4,6 +4,7 @@ import {ConnectionService} from '../connection.service';
 import {Device} from '../../models/device.model';
 import {Observable} from 'rxjs';
 import {DeviceOutput} from '../../models/deviceOutput.model';
+import {AuthService} from '../auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import {DeviceOutput} from '../../models/deviceOutput.model';
 export class DeviceService {
   private apiUrl;
   constructor(private httpClient: HttpClient,
+              private authService: AuthService,
               private connectionService: ConnectionService) {
     this.apiUrl = this.connectionService.getConnectionUrl() + 'device'; }
 
@@ -26,16 +28,17 @@ export class DeviceService {
 
   createDevice(device: Device) {
     return this.httpClient
-      .post<Device>(this.apiUrl, JSON.stringify(device));
+      .post<Device>(this.apiUrl, device); //JSON.stringify(device)
   }
 
   updateDevice(id, device: Device) {
     return this.httpClient
-      .put<Device>(this.apiUrl + '?id=' + id, JSON.stringify(device));
+      .put<Device>(this.apiUrl + '?id=' + id, device);
   }
 
   deleteDevice(id: number) {
+    const options = this.authService.getHttpOptions();
     return this.httpClient
-      .delete<Device>(this.apiUrl + '?id=' + id);
+      .delete<Device>(this.apiUrl + '?id=' + id, options);
   }
 }

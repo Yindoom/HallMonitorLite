@@ -47,7 +47,7 @@ export class UserState {
     this.userService.deleteUser(id).subscribe(() => {
       const state = getState();
       patchState({
-        users: state.users.filter(user => user.id != id )
+        users: state.users.filter(user => user.id != id)
       });
     });
   }
@@ -57,13 +57,12 @@ export class UserState {
     this.userService.updateUser(id, payload).subscribe(() => {
       const state = getState();
       const index = state.users.findIndex(u => u.id === id);
-
       payload.id = id;
       state.users[index] = payload;
       patchState({
         users: [...state.users]
-      })
-    })
+      });
+    });
   }
 
   @Action(GetUsers)

@@ -1,0 +1,12 @@
+<form [formGroup]="deviceOutputForm" (ngSubmit)="deviceOutputUpdateCreate()">
+  <mat-form-field>
+    <input matInput type="text" placeholder="device id" formControlName="device_id">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="number of people" formControlName="number_of_people">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="timestamp" formControlName="timestamp">
+  </mat-form-field>
+  <button mat-button type="submit">{{btnMessage}}</button>
+</form>

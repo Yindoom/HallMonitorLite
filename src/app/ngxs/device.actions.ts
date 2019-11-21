@@ -1,31 +1,36 @@
 import {Device} from '../models/device.model';
 
-export class AddDevice{
+export class AddDevice {
   static readonly type = '[Device] Add';
 
-  constructor(public payload: Device) {}
+  constructor(public payload: Device) {
+  }
 }
 
-export class UpdateDevice{
+export class UpdateDevice {
   static readonly type = '[Device] Update';
 
-  constructor(public id: number, public payload: Device) {}
+  constructor(public id: number, public payload: Device) {
+  }
 }
 
-export class RemoveDevice{
+export class RemoveDevice {
   static readonly type = '[Device] Remove';
 
-  constructor(public id: number) {}
+  constructor(public id: number) {
+  }
 }
 
-export class GetDevices{
+export class GetDevices {
   static readonly type = '[Device] Get';
 
-  constructor() {}
+  constructor() {
+  }
 }
 
-export class GetById{
+export class GetById {
   static readonly type = '[Device] Get';
 
-  constructor(public id: number) {}
+  constructor(public id: number) {
+  }
 }

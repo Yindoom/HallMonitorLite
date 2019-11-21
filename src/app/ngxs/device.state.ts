@@ -46,7 +46,7 @@ export class DeviceState {
     this.deviceService.deleteDevice(id).subscribe(() => {
       const state = getState();
       patchState({
-        devices: state.devices.filter(device => device.id != id )
+        devices: state.devices.filter(device => device.id != id)
       });
     });
   }
@@ -56,13 +56,12 @@ export class DeviceState {
     this.deviceService.updateDevice(id, payload).subscribe(() => {
       const state = getState();
       const index = state.devices.findIndex(d => d.id === id);
-
       payload.id = id;
       state.devices[index] = payload;
       patchState({
         devices: [...state.devices]
-      })
-    })
+      });
+    });
   }
 
   @Action(GetDevices)

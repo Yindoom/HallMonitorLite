@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
-import { UserService } from 'src/app/services/model-services/user.service';
 import { MatDialog } from '@angular/material';
 import { UserCreateUpdateComponent } from '../user-create-update/user-create-update.component';
 import {Store, Select} from '@ngxs/store'
@@ -18,8 +17,7 @@ export class AdminPageComponent implements OnInit {
 
   @Select(UserState.getUsers) userList: Observable<User[]>;
 
-  constructor(private userService: UserService,
-              private dialog: MatDialog,
+  constructor(private dialog: MatDialog,
               private store: Store) {}
 
   ngOnInit() {

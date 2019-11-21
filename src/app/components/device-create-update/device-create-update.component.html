@@ -1,1 +1,9 @@
-<p>device-create-update works!</p>
+<form [formGroup]="deviceForm" (ngSubmit)="deviceUpdateCreate()">
+  <mat-form-field>
+    <input matInput type="text" placeholder="comment" formControlName="comment">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="admin" formControlName="admin_id">
+  </mat-form-field>
+  <button mat-button type="submit">{{btnMessage}}</button>
+</form>

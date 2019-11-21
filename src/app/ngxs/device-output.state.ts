@@ -27,7 +27,7 @@ export class DeviceOutputState {
   }
 
   @Selector()
-  static getDeviceOutputsById(state: DeviceOutputStateModel) {
+  static getDeviceOutputById(state: DeviceOutputStateModel) {
     return state.deviceOutput;
   }
 
@@ -46,7 +46,7 @@ export class DeviceOutputState {
     this.deviceOutputService.removeDeviceOutput(id).subscribe(() => {
       const state = getState();
       patchState({
-        deviceOutputs: state.deviceOutputs.filter(deviceOutput => deviceOutput.id != id )
+        deviceOutputs: state.deviceOutputs.filter(deviceOutput => deviceOutput.id != id)
       });
     });
   }
@@ -56,13 +56,12 @@ export class DeviceOutputState {
     this.deviceOutputService.updateDeviceOutput(id, payload).subscribe(() => {
       const state = getState();
       const index = state.deviceOutputs.findIndex(o => o.id === id);
-
       payload.id = id;
       state.deviceOutputs[index] = payload;
       patchState({
         deviceOutputs: [...state.deviceOutputs]
-      })
-    })
+      });
+    });
   }
 
   @Action(GetDeviceOutputs)

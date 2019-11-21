@@ -1,0 +1,17 @@
+<div *ngIf="deviceOutputList">
+  <ul>
+    <li *ngFor="let o of deviceOutputList | async">
+      <p>Id: {{o.id}}, Device Id: {{o.device_id}}, Number of People: {{o.number_of_people}}</p>
+      <button mat-mini-fab color="primary" (click)="updateDeviceOutput(o.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-mini-fab color="warn" (click)="deleteDeviceOutput(o.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </li>
+  </ul>
+</div>
+
+<button mat-mini-fab id="createBtn" (click)="createDeviceOutput()">
+  <mat-icon>add</mat-icon>
+</button>
