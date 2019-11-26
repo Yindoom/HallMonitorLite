@@ -14,7 +14,8 @@ import {AdminPageComponent} from './components/admin-page/admin-page.component';
 import {DeviceComponent} from './components/device/device.component';
 import {DeviceOutputComponent} from './components/device-output/device-output.component';
 import {DeviceOutputCreateUpdateComponent} from './components/device-output-create-update/device-output-create-update.component';
-
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {PasswordComponent} from './components/password/password.component';
 
 import {PDFExportModule} from '@progress/kendo-angular-pdf-export';
 import {ChartsModule} from 'ng2-charts';
@@ -35,7 +36,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {UserState} from './ngxs/user.state';
 import {DeviceOutputState} from './ngxs/device-output.state';
 import {DeviceState} from './ngxs/device.state';
-import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AdminPageComponent,
     DeviceComponent,
     DeviceOutputComponent,
-    NavbarComponent
+    NavbarComponent,
+    PasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +76,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatToolbarModule,
     NgxsModule.forRoot([UserState, DeviceState, DeviceOutputState])
   ],
-  entryComponents: [UserCreateUpdateComponent, DeviceCreateUpdateComponent, DeviceOutputCreateUpdateComponent],
+  entryComponents: [
+    UserCreateUpdateComponent,
+    DeviceCreateUpdateComponent,
+    DeviceOutputCreateUpdateComponent,
+    PasswordComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
