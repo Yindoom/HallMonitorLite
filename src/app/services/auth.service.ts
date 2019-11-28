@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {ConnectionService} from './connection.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {LoginDTO} from '../models/loginDTO.model';
 import decode from 'jwt-decode';
+import {Router} from '@angular/router';
 import { isThisTypeNode } from 'typescript';
 
 const httpOptions = {
@@ -17,12 +18,25 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(
-    private connection: ConnectionService,
-    private http: HttpClient
-  ) {}
 
   apiUrl = this.connection.getConnectionUrl();
+
+  public loggedSubject: Subject<boolean>;
+  public isLogged: any;
+
+  constructor(
+    private connection: ConnectionService,
+    private http: HttpClient,
+    private router: Router
+  ) {
+    this.loggedSubject = new Subject<boolean>();
+    this.isLogged = this.loggedSubject.asObservable();
+    this.loggedSubject.next(false);
+  }
+
+  checkAccessToken() {
+    return this.isLogged;
+  }
 
   login(dto: LoginDTO): Observable<any> {
     return this.http.post<any>(this.apiUrl + 'login', dto);
@@ -50,7 +64,7 @@ export class AuthService {
     const token = localStorage.getItem('access-token');
     const decoded = decode(token);
     const role = decoded.user_claims['role'];
-    const isAdmin = role === 'Admin';
+    const isAdmin = role === 'Admin' || role === 'SuperAdmin';
     return isAdmin;
   }
 
@@ -65,7 +79,6 @@ export class AuthService {
   getLoggedInUserId() {
     const token = localStorage.getItem('access-token');
     const decoded = decode(token);
-    console.log(decoded.user_claims['id']);
     return decoded.user_claims['id'];
   }
 
@@ -76,4 +89,12 @@ export class AuthService {
     
     return user;
   }
+  logout() {
+    localStorage.removeItem('access-token');
+    localStorage.removeItem('refresh-token');
+    this.loggedSubject.next(false);
+    this.router.navigate(['/login']);
+  }
+
+
 }
