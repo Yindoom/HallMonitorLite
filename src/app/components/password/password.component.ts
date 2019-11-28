@@ -1,7 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Select, Store} from '@ngxs/store';
 
 @Component({
   selector: 'app-password',

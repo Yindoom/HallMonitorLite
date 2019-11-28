@@ -16,13 +16,15 @@ private apiUrl;
     this.apiUrl = this.connectionService.getConnectionUrl() + 'user';
   }
   getUsers(): Observable<User[]> {
+    const options = this.authService.getHttpOptions();
     return this.httpClient
-      .get<User[]>(this.apiUrl);
+      .get<User[]>(this.apiUrl, options);
   }
 
   getUserById(id: number): Observable<User> {
+    const options = this.authService.getHttpOptions();
     return this.httpClient
-      .get<User>(this.apiUrl + '?id=' + id);
+      .get<User>(this.apiUrl + '?id=' + id, options);
   }
 
   createUser(user: User) {
