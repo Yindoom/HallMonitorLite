@@ -16,13 +16,7 @@ import { RemoveHashPlugin } from '@angular-devkit/build-angular/src/angular-cli-
 export class AdminPageComponent implements OnInit {
   @Select(UserState.getUsers) userList: Observable<User[]>;
 
-<<<<<<< HEAD
   constructor(private dialog: MatDialog, private store: Store) {}
-=======
-  constructor(private dialog: MatDialog,
-              private store: Store) {
-  }
->>>>>>> 25243879057559aba1536415f188a07c3d30df92
 
   ngOnInit() {
     debugger;

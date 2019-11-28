@@ -29,7 +29,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MatDialogModule, MatToolbarModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 
 import {UserState} from './ngxs/user.state';
