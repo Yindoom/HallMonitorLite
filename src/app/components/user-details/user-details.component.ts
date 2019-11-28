@@ -6,6 +6,8 @@ import {Select, Store} from '@ngxs/store';
 import {GetById, GetUserByIdFromDB, GetUsers, UpdateUser} from '../../ngxs/user.actions';
 import {AuthService} from '../../services/auth.service';
 import {UserService} from '../../services/model-services/user.service';
+import {UserCreateUpdateComponent} from '../user-create-update/user-create-update.component';
+import {MatDialog} from '@angular/material/dialog';
 
 
 @Component({
@@ -21,7 +23,7 @@ export class UserDetailsComponent implements OnInit {
 
   constructor(private store: Store,
               private authService: AuthService,
-              private userService: UserService) {
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -32,4 +34,11 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
+  updateUser(id: number) {
+    this.store.dispatch(new GetById(id)).subscribe(() => {
+      this.dialog.open(UserCreateUpdateComponent, {
+        data: {edit: true}
+      });
+    });
+  }
 }

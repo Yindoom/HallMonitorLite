@@ -16,7 +16,13 @@ import { RemoveHashPlugin } from '@angular-devkit/build-angular/src/angular-cli-
 export class AdminPageComponent implements OnInit {
   @Select(UserState.getUsers) userList: Observable<User[]>;
 
+<<<<<<< HEAD
   constructor(private dialog: MatDialog, private store: Store) {}
+=======
+  constructor(private dialog: MatDialog,
+              private store: Store) {
+  }
+>>>>>>> 25243879057559aba1536415f188a07c3d30df92
 
   ngOnInit() {
     debugger;
@@ -30,14 +36,14 @@ export class AdminPageComponent implements OnInit {
   updateUser(id: number) {
     this.store.dispatch(new GetById(id)).subscribe(() => {
       this.dialog.open(UserCreateUpdateComponent, {
-        data: { edit: true }
+        data: {edit: true}
       });
     });
   }
 
   createUser() {
     this.dialog.open(UserCreateUpdateComponent, {
-      data: { edit: false }
+      data: {edit: false}
     });
   }
 }

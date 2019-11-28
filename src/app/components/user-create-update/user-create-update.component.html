@@ -1,12 +1,19 @@
 <form [formGroup]="userForm" (ngSubmit)="userUpdateCreate()">
     <mat-form-field>
-        <input matInput type="text" placeholder="email" formControlName="email">
+        <input matInput type="text" placeholder="Email" formControlName="email">
     </mat-form-field>
+  <br>
     <mat-form-field>
-        <input matInput type="text" placeholder="username" formControlName="username">
+        <input matInput type="text" placeholder="Username" formControlName="username">
     </mat-form-field>
+  <br>
     <mat-form-field>
-        <input matInput type="password" placeholder="password" formControlName="password">
+        <input matInput type="password" placeholder="New Password" formControlName="newPassword">
     </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput type="password" placeholder="Repeat New Password" formControlName="newRepeatedPassword">
+  </mat-form-field>
+  <br>
     <button mat-button type="submit">{{btnMessage}}</button>
 </form>
