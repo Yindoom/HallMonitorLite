@@ -22,9 +22,9 @@ private apiUrl;
   }
 
   getUserById(id: number): Observable<User> {
-    debugger;
+    const options = this.authService.getHttpOptions();
     return this.httpClient
-      .get<User>(this.apiUrl + '?id=' + id);
+      .get<User>(this.apiUrl + '?id=' + id, options);
   }
 
   createUser(user: User) {

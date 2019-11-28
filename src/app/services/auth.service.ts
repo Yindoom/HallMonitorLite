@@ -46,6 +46,7 @@ export class AuthService {
   }
 
   isAdmin() {
+    console.log("Is Admin")
     const token = localStorage.getItem('access-token');
     const decoded = decode(token);
     const role = decoded.user_claims['role'];
@@ -66,5 +67,13 @@ export class AuthService {
     const decoded = decode(token);
     console.log(decoded.user_claims['id']);
     return decoded.user_claims['id'];
+  }
+
+  getUsername() {
+    const token = localStorage.getItem('access-token');
+    const decoded = decode(token);
+    const user = decoded.identity;
+    
+    return user;
   }
 }

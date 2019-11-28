@@ -7,12 +7,13 @@ import {AdminPageComponent} from './components/admin-page/admin-page.component';
 import {UserDetailsComponent} from './components/user-details/user-details.component';
 import {DeviceComponent} from './components/device/device.component';
 import {DeviceOutputComponent} from './components/device-output/device-output.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
   {path: 'login', component: LoginComponent},
   {path: 'table', component: TableComponent},
-  {path: 'user', component: UserDetailsComponent},
+  {path: 'user', component: UserDetailsComponent, canActivate: [AdminGuard]},
   {path: 'admin', component: AdminPageComponent},
   {path: 'devices', component: DeviceComponent},
   {path: 'deviceOutputs', component: DeviceOutputComponent}
