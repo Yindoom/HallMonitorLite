@@ -5,6 +5,7 @@ import {Observable, Subject} from 'rxjs';
 import {LoginDTO} from '../models/loginDTO.model';
 import decode from 'jwt-decode';
 import {Router} from '@angular/router';
+import { isThisTypeNode } from 'typescript';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -53,7 +54,7 @@ export class AuthService {
     localStorage.removeItem('access-token');
     httpOptions.headers = httpOptions.headers.set(
       'Authorization',
-      'Bearer ' + this.getToken()
+      'Bearer ' + this.getRefreshToken()
     );
     return this.http.get<any>(this.apiUrl + 'refresh', httpOptions);
   }
