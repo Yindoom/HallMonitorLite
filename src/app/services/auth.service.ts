@@ -60,6 +60,7 @@ export class AuthService {
   }
 
   isAdmin() {
+    console.log("Is Admin")
     const token = localStorage.getItem('access-token');
     console.log(token + ' token');
     const decoded = decode(token);
@@ -82,6 +83,13 @@ export class AuthService {
     return decoded.user_claims['id'];
   }
 
+  getUsername() {
+    const token = localStorage.getItem('access-token');
+    const decoded = decode(token);
+    const user = decoded.identity;
+    
+    return user;
+  }
   logout() {
     localStorage.removeItem('access-token');
     localStorage.removeItem('refresh-token');

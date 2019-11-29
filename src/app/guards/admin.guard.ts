@@ -6,7 +6,7 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-  canActivate() { 
+  canActivate() {
     return this.authService.isAdmin();
   }
 

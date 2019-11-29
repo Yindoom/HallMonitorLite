@@ -80,7 +80,8 @@ import { H401Interceptor } from './services/error.handler';
   entryComponents: [
     UserCreateUpdateComponent,
     DeviceCreateUpdateComponent,
-    DeviceOutputCreateUpdateComponent
+    DeviceOutputCreateUpdateComponent, 
+    PasswordComponent
   ],
   providers: [
     {
