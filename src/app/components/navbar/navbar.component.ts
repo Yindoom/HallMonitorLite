@@ -26,21 +26,30 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.init();
+
+    //shows the navbar when you refresh page
+    if (this.authService.getLoggedInUserId() != '') {
+      console.log(this.authService.getLoggedInUserId());
+      this.isLoggedIn = true;
+      this.init();
+    }
+
+    //shows the navbar when you have logged in
     this.subscription = this.authService.checkAccessToken().subscribe(x => {
       if (x !== false) {
         this.isLoggedIn = x;
-        //this.isAdminLoggedIn = true;
+        console.log(x + ' x is');
         this.init();
       }
     });
   }
 
   init() {
-    if (this.authService.checkAccessToken()) {
+    console.log('is logged in in init + ' + this.isLoggedIn + 'authservice Islogged ' + this.authService.isLogged);
+    if (this.isLoggedIn && this.authService.checkAccessToken()) {
+      console.log(this.authService.checkAccessToken());
       this.isAdminLoggedIn = this.authService.isAdmin();
       this.isLoggedIn = true;
-    } else {
-      this.isLoggedIn = false;
     }
   }
 

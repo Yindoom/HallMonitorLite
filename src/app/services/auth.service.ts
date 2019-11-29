@@ -61,11 +61,12 @@ export class AuthService {
 
   isAdmin() {
     const token = localStorage.getItem('access-token');
+    console.log(token + ' token');
     const decoded = decode(token);
     const role = decoded.user_claims['role'];
     const isAdmin = role === 'Admin' || role === 'SuperAdmin';
     return isAdmin;
-  }
+}
 
   getHttpOptions() {
     httpOptions.headers = httpOptions.headers.set(

@@ -19,7 +19,6 @@ export class AdminPageComponent implements OnInit {
   constructor(private dialog: MatDialog, private store: Store) {}
 
   ngOnInit() {
-    debugger;
     this.store.dispatch(new GetUsers());
   }
 

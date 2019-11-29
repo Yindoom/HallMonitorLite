@@ -21,7 +21,6 @@ export class H401Interceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError(err => {
-        debugger;
         if (err.status === 401) {
             console.log(err.error.msg)
           if (err.error.msg === 'Token has expired') {

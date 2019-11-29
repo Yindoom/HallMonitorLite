@@ -6,15 +6,15 @@
 
       <a *ngIf="isLoggedIn" routerLink="" class="screen-navigation-controls"> Main </a>
 
+      <a *ngIf="isLoggedIn" routerLink="/user" class="screen-navigation-controls"> User </a>
+
       <a *ngIf="isAdminLoggedIn" routerLink="/admin" class="screen-navigation-controls"> Users </a>
 
       <a *ngIf="isAdminLoggedIn" routerLink="/devices" class="screen-navigation-controls"> Devices </a>
 
       <a *ngIf="isAdminLoggedIn" routerLink="/deviceOutputs" class="screen-navigation-controls"> Device Outputs </a>
 
-      <a *ngIf="isLoggedIn" routerLink="/user" class="screen-navigation-controls"> User </a>
-
-      <a *ngIf="isLoggedIn" routerLink="/login" class="screen-navigation-controls" (click)="logout()"> Log Out </a>
+      <a *ngIf="isLoggedIn" routerLink="/login" class="screen-navigation-controls" id="logout" (click)="logout()"> Log Out </a>
 
     </div>
 
