@@ -18,33 +18,48 @@ export class DeviceOutputService {
   }
 
   getDeviceOutputs(): Observable<DeviceOutput[]> {
-    return this.httpClient
-      .get<DeviceOutput[]>(this.apiUrl);
+    return this.httpClient.get<DeviceOutput[]>(
+      this.apiUrl,
+      this.authService.getHttpOptions()
+    );
   }
 
   getDeviceOutputById(id: number): Observable<DeviceOutput> {
-    return this.httpClient
-      .get<DeviceOutput>(this.apiUrl + '?id=' + id);
+    return this.httpClient.get<DeviceOutput>(
+      this.apiUrl + "?id=" + id,
+      this.authService.getHttpOptions()
+    );
   }
 
   getDeviceOutputByTimeInterval(dates: DateInterval): Observable<DeviceOutput[]> {
-    return this.httpClient
-      .post<DeviceOutput[]>(this.apiUrl + '/getbydate', dates);
+    return this.httpClient.post<DeviceOutput[]>(
+      this.apiUrl + "/getbydate",
+      dates,
+      this.authService.getHttpOptions()
+    );
   }
 
   addDeviceOutput(output: DeviceOutput) {
-    return this.httpClient
-      .post<DeviceOutput>(this.apiUrl, output);
+    return this.httpClient.post<DeviceOutput>(
+      this.apiUrl,
+      output,
+      this.authService.getHttpOptions()
+    );
   }
 
   updateDeviceOutput(id, output: DeviceOutput) {
-    return this.httpClient
-      .put<DeviceOutput>(this.apiUrl + '?id=' + id, output);
+    return this.httpClient.put<DeviceOutput>(
+      this.apiUrl + "?id=" + id,
+      output,
+      this.authService.getHttpOptions()
+    );
   }
 
   removeDeviceOutput(id: number) {
-    const options = this.authService.getHttpOptions();
-    return this.httpClient
-      .delete<DeviceOutput>(this.apiUrl + '?id=' + id, options);
+    
+    return this.httpClient.delete<DeviceOutput>(
+      this.apiUrl + "?id=" + id,
+      this.authService.getHttpOptions()
+    );
   }
 }

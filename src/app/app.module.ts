@@ -36,7 +36,7 @@ import {UserState} from './ngxs/user.state';
 import {DeviceOutputState} from './ngxs/device-output.state';
 import {DeviceState} from './ngxs/device.state';
 
-import { H401Interceptor } from './services/error.handler';
+import { H401Interceptor } from './services/http-interceptor';
 
 @NgModule({
   declarations: [
