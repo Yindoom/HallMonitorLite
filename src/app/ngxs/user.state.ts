@@ -34,10 +34,11 @@ export class UserState {
 
   @Action(AddUser)
   add({getState, patchState}: StateContext<UserStateModel>, {payload}: AddUser) {
-    this.userService.createUser(payload).subscribe(() => {
+    this.userService.createUser(payload).subscribe(user => {
+      debugger;
       const state = getState();
       patchState({
-        users: [...state.users, payload]
+        users: [...state.users, user]
       });
     });
   }
@@ -54,6 +55,7 @@ export class UserState {
 
   @Action(UpdateUser)
   update({getState, patchState}: StateContext<UserStateModel>, {id, payload}: UpdateUser) {
+    payload.role = getState().user.role;
     this.userService.updateUser(id, payload).subscribe(() => {
       const state = getState();
       const index = state.users.findIndex(u => u.id === id);

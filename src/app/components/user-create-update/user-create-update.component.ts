@@ -16,8 +16,8 @@ export class UserCreateUpdateComponent implements OnInit {
   userForm = new FormGroup({
     email: new FormControl(''),
     username: new FormControl(''),
-    newPassword: new FormControl(''),
-    newRepeatedPassword: new FormControl('')
+    password: new FormControl(''),
+    repeatedPassword: new FormControl('')
   });
 
   btnMessage = 'Create';

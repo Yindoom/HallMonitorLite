@@ -6,42 +6,47 @@ import {User} from '../../models/user.model';
 import { AuthService } from '../auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class UserService {
-private apiUrl;
-  constructor(private httpClient: HttpClient,
-              private connectionService: ConnectionService,
-              private authService: AuthService) {
-    this.apiUrl = this.connectionService.getConnectionUrl() + 'user';
+  private apiUrl;
+  constructor(
+    private httpClient: HttpClient,
+    private connectionService: ConnectionService,
+    private authService: AuthService
+  ) {
+    this.apiUrl = this.connectionService.getConnectionUrl() + "user";
   }
   getUsers(): Observable<User[]> {
     const options = this.authService.getHttpOptions();
-    return this.httpClient
-      .get<User[]>(this.apiUrl, options);
+    return this.httpClient.get<User[]>(this.apiUrl, options);
   }
 
   getUserById(id: number): Observable<User> {
     const options = this.authService.getHttpOptions();
-    return this.httpClient
-      .get<User>(this.apiUrl + '?id=' + id, options);
+    return this.httpClient.get<User>(this.apiUrl + "?id=" + id, options);
   }
 
-  createUser(user: User) {
+  createUser(user: User): Observable<User> {
     const options = this.authService.getHttpOptions();
-    return this.httpClient
-      .post<User>(this.apiUrl, JSON.stringify(user), options);
+    return this.httpClient.post<User>(
+      this.apiUrl,
+      JSON.stringify(user),
+      options
+    );
   }
 
-  updateUser(id, user: User) {
+  updateUser(id, user: User): Observable<User> {
     const options = this.authService.getHttpOptions();
-    return this.httpClient
-      .put<User>(this.apiUrl + '?id=' + id, JSON.stringify(user), options);
+    return this.httpClient.put<User>(
+      this.apiUrl + "?id=" + id,
+      JSON.stringify(user),
+      options
+    );
   }
 
   deleteUser(id: number) {
     const options = this.authService.getHttpOptions();
-    return this.httpClient
-      .delete<User>(this.apiUrl + '?id=' + id, options);
+    return this.httpClient.delete<User>(this.apiUrl + "?id=" + id, options);
   }
 }
