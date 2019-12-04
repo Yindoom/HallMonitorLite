@@ -5,7 +5,8 @@ import {Observable, Subject} from 'rxjs';
 import {LoginDTO} from '../models/loginDTO.model';
 import decode from 'jwt-decode';
 import {Router} from '@angular/router';
-import { isThisTypeNode } from 'typescript';
+import {isThisTypeNode} from 'typescript';
+//import {decode} from 'punycode';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -60,14 +61,12 @@ export class AuthService {
   }
 
   isAdmin() {
-    console.log("Is Admin")
     const token = localStorage.getItem('access-token');
-    console.log(token + ' token');
     const decoded = decode(token);
     const role = decoded.user_claims['role'];
     const isAdmin = role === 'Admin' || role === 'SuperAdmin';
     return isAdmin;
-}
+  }
 
   getHttpOptions() {
     httpOptions.headers = httpOptions.headers.set(
@@ -79,17 +78,21 @@ export class AuthService {
 
   getLoggedInUserId() {
     const token = localStorage.getItem('access-token');
-    const decoded = decode(token);
-    return decoded.user_claims['id'];
+    if (token != null) {
+      const decoded = decode(token);
+      return decoded.user_claims['id'];
+    } else {
+      return null;
+    }
   }
 
   getUsername() {
     const token = localStorage.getItem('access-token');
     const decoded = decode(token);
     const user = decoded.identity;
-    
     return user;
   }
+
   logout() {
     localStorage.removeItem('access-token');
     localStorage.removeItem('refresh-token');

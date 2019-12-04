@@ -28,8 +28,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.init();
 
     //shows the navbar when you refresh page
-    if (this.authService.getLoggedInUserId() != '') {
-      console.log(this.authService.getLoggedInUserId());
+    if (this.authService.getLoggedInUserId() !== null ) {
       this.isLoggedIn = true;
       this.init();
     }
@@ -38,16 +37,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.subscription = this.authService.checkAccessToken().subscribe(x => {
       if (x !== false) {
         this.isLoggedIn = x;
-        console.log(x + ' x is');
         this.init();
       }
     });
   }
 
   init() {
-    console.log('is logged in in init + ' + this.isLoggedIn + 'authservice Islogged ' + this.authService.isLogged);
     if (this.isLoggedIn && this.authService.checkAccessToken()) {
-      console.log(this.authService.checkAccessToken());
       this.isAdminLoggedIn = this.authService.isAdmin();
       this.isLoggedIn = true;
     }

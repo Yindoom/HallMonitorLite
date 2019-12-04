@@ -8,13 +8,11 @@ describe("Testing login and logout", () => {
 
   it("Should log in", () => {
     cy.get('.loginBtn').click();
-    // maybe add contains?  cy.contains('Log Out');
     cy.location('pathname').should('eq', '/'); //maybe empty
   });
 
   it("Should log out", () => {
     cy.contains('Log Out').click();
-   // cy.get('.logout').click();
 
     cy.contains('Log in');
     cy.location('pathname').should('eq', '/login');
