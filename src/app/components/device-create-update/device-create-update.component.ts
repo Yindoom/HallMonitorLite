@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {UserCreateUpdateComponent} from '../user-create-update/user-create-update.component';
 import {Select, Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
 import {DeviceState} from '../../ngxs/device.state';
@@ -22,10 +21,10 @@ export class DeviceCreateUpdateComponent implements OnInit {
 
   device: Device;
   edit: boolean;
-  btnMessage: String = 'Create';
+  btnMessage = 'Create';
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-              private dialogRef: MatDialogRef<UserCreateUpdateComponent>,
+              private dialogRef: MatDialogRef<DeviceCreateUpdateComponent>,
               private store: Store) {
   }
 

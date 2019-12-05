@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
   CanActivate,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  UrlTree,
   Router
 } from '@angular/router';
-import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -14,8 +10,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class AuthGuard implements CanActivate {
   canActivate() {
-    console.log(this.auth.isAdmin());
-    if (this.auth.getToken()) {
+    if (this.authService.getToken()) {
       return true;
     } else {
       this.router.navigate(['/login']);
@@ -23,5 +18,5 @@ export class AuthGuard implements CanActivate {
     }
   }
 
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {}
 }

@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, ErrorHandler} from '@angular/core';
 import {NgxsModule} from '@ngxs/store';
-
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
@@ -14,7 +13,8 @@ import {AdminPageComponent} from './components/admin-page/admin-page.component';
 import {DeviceComponent} from './components/device/device.component';
 import {DeviceOutputComponent} from './components/device-output/device-output.component';
 import {DeviceOutputCreateUpdateComponent} from './components/device-output-create-update/device-output-create-update.component';
-
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {PasswordComponent} from './components/password/password.component';
 
 import {PDFExportModule} from '@progress/kendo-angular-pdf-export';
 import {ChartsModule} from 'ng2-charts';
@@ -29,14 +29,14 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MatDialogModule, MatToolbarModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
-
 import {UserState} from './ngxs/user.state';
 import {DeviceOutputState} from './ngxs/device-output.state';
 import {DeviceState} from './ngxs/device.state';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { DeviceOutputTableDetailsComponent } from './components/device-output-table-details/device-output-table-details.component';
+import { H401Interceptor } from './services/http-interceptor';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +52,8 @@ import { DeviceOutputTableDetailsComponent } from './components/device-output-ta
     DeviceComponent,
     DeviceOutputComponent,
     NavbarComponent,
-    DeviceOutputTableDetailsComponent
+    DeviceOutputTableDetailsComponent,
+    PasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -77,8 +78,20 @@ import { DeviceOutputTableDetailsComponent } from './components/device-output-ta
     MatToolbarModule,
     NgxsModule.forRoot([UserState, DeviceState, DeviceOutputState])
   ],
-  entryComponents: [UserCreateUpdateComponent, DeviceCreateUpdateComponent, DeviceOutputCreateUpdateComponent, DeviceOutputTableDetailsComponent],
-  providers: [],
+  entryComponents: [
+    UserCreateUpdateComponent,
+    DeviceCreateUpdateComponent,
+    DeviceOutputCreateUpdateComponent,
+    DeviceOutputTableDetailsComponent,
+    PasswordComponent
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: H401Interceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

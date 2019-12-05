@@ -1,1 +1,11 @@
-<p>user-details works!</p>
+<div *ngIf="user">
+  <div class="userDetail" >
+    <h3> Id: {{user.id}} </h3>
+    <h3> Username: {{user.username}} </h3>
+    <h3> Email: {{user.email}} </h3>
+    <h3> Role: {{user.role}} </h3>
+  </div>
+  <button mat-button (click)="updateUser(user.id)">Update User</button>
+
+</div>
+

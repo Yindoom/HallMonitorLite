@@ -16,10 +16,11 @@ export class UserCreateUpdateComponent implements OnInit {
   userForm = new FormGroup({
     email: new FormControl(''),
     username: new FormControl(''),
-    password: new FormControl('')
+    password: new FormControl(''),
+    repeatedPassword: new FormControl('')
   });
 
-  btnMessage: String = 'Create';
+  btnMessage = 'Create';
 
   user: User;
   edit: boolean;

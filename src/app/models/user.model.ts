@@ -1,6 +1,6 @@
 export class User {
   id?: number;
-  created_by?: number;
+  admin_id?: number;
   username: string;
   email: string;
   role?: string;

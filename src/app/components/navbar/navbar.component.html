@@ -1,27 +1,23 @@
-<div>
+<div >
 
   <mat-toolbar color="primary">
 
     <div class="big-navigation-container">
 
-      <a routerLink="" class="screen-navigation-controls">Main</a>
+      <a *ngIf="isLoggedIn" routerLink="" class="screen-navigation-controls"> Main </a>
 
-      <a routerLink="/admin" class="screen-navigation-controls">Users </a>
+      <a *ngIf="isLoggedIn" routerLink="/user" class="screen-navigation-controls"> User </a>
 
-      <a routerLink="/devices" class="screen-navigation-controls">Devices </a>
+      <a *ngIf="isAdminLoggedIn" routerLink="/admin" class="screen-navigation-controls"> Users </a>
 
-      <a routerLink="/deviceOutputs" class="screen-navigation-controls"> Device Outputs </a>
+      <a *ngIf="isAdminLoggedIn" routerLink="/devices" class="screen-navigation-controls"> Devices </a>
+
+      <a *ngIf="isAdminLoggedIn" routerLink="/deviceOutputs" class="screen-navigation-controls"> Device Outputs </a>
+
+      <a *ngIf="isLoggedIn" routerLink="/login" class="screen-navigation-controls" id="logout" (click)="logout()"> Log Out </a>
 
     </div>
 
   </mat-toolbar>
 
 </div>
-
-<!--  {path: '', component: DashboardComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'table', component: TableComponent},
-  {path: 'admin', component: AdminPageComponent},
-  {path: 'user', component: UserDetailsComponent},
-  {path: 'devices', component: DeviceComponent},
-  {path: 'deviceOutputs', component: DeviceOutputComponent}-->
