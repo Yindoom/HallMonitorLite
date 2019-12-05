@@ -1,54 +1,22 @@
+<form>
+ <input type="number" name="quantity" min="1" value="{{pickedNumber}}">
+  <input type="submit">
+  {{pickedNumber}}
+</form>
+
 <div class="panel-body" align="center">
-
-    <table>
-        <thead style="background-color: #f2f2f2">
-            <tr role="row">
-                <th>
-                    ID
-                </th>
-                <th>
-                    nr of ppl
-                </th>
-                <th>
-                    TimeStamp
-                </th>
-                <th>
-                    Device id
-                </th>
-                <th>
-                    CPU Temperature
-                </th>
-            </tr>
-        </thead>
-
-        <tbody *ngIf="deviceOutputs">
-            <tr *ngFor="let output of deviceOutputs" id="drag" role="row" (click)="setOutput(output)">
-                <td class="clickable-row">
-                    <div class="table-cell">
-                        {{output.id}}
-                    </div>
-                </td>
-                <td class="clickable-row">
-                    <div class="table-cell">
-                        {{output.number_of_people}}
-                    </div>
-                </td>
-                <td class="clickable-row">
-                    <div class="table-cell">
-                        {{output.timestamp}}
-                    </div>
-                </td>
-                <td class="clickable-row">
-                    <div class="table-cell ">
-                        {{output.device_id}}
-                    </div>
-                </td>
-                <td class="clickable-row">
-                    <div class="table-cell">
-                        {{output.temperature}}
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <h1 style="align-items: center">my NO CSS table</h1>
+  <table>
+    <tr>
+      <th *ngFor="let col of getDaysForCurrentWeek()">
+        {{col}}
+      </th>
+    </tr>
+    <tr *ngFor="let row of rows">
+      <td *ngFor="let col of getDaysForCurrentWeek()" (click)="getDeviceOutputForValue(row, 60, col)">
+        {{row[col]}}
+      </td>
+    </tr>
+  </table>
 </div>
+

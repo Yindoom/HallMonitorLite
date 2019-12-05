@@ -36,6 +36,7 @@ import {UserState} from './ngxs/user.state';
 import {DeviceOutputState} from './ngxs/device-output.state';
 import {DeviceState} from './ngxs/device.state';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { DeviceOutputTableDetailsComponent } from './components/device-output-table-details/device-output-table-details.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AdminPageComponent,
     DeviceComponent,
     DeviceOutputComponent,
-    NavbarComponent
+    NavbarComponent,
+    DeviceOutputTableDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatToolbarModule,
     NgxsModule.forRoot([UserState, DeviceState, DeviceOutputState])
   ],
-  entryComponents: [UserCreateUpdateComponent, DeviceCreateUpdateComponent, DeviceOutputCreateUpdateComponent],
+  entryComponents: [UserCreateUpdateComponent, DeviceCreateUpdateComponent, DeviceOutputCreateUpdateComponent, DeviceOutputTableDetailsComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

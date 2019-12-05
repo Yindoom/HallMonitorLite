@@ -47,4 +47,9 @@ export class DeviceOutputService {
     return this.httpClient
       .delete<DeviceOutput>(this.apiUrl + '?id=' + id, options);
   }
+
+  getDeviceOutputByTimestampAndId(id: number, output) {
+    console.log(output);
+    return this.httpClient.post(this.apiUrl + '/timeinterval?device_id=' + id, output);
+  }
 }

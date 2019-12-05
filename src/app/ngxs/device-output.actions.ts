@@ -24,7 +24,7 @@ export class GetDeviceOutputs{
   constructor() {}
 }
 
-export class GetById{
+export class GetById {
   static readonly type = '[DeviceOutput] Get';
 
   constructor(public id: number) {}
