@@ -1,35 +1,41 @@
-describe("Testing device", () => {
+describe("Testing device guards", () => {
 
-  //should try to access sites while not logged in
-  //as user
-  //as admin
-  //as superadmin
-
-
-  it("Should login ", () => {
-    cy.visit("http://localhost:4200/login");
-    cy.get('.username').type('Admin').should('have.value', 'Admin');
-    cy.get('.password').type('admin').should('have.value', 'admin');
-    cy.get('.loginBtn').click();
-
+  it("Should try to access page admin without being logged in ", () => {
+    cy.visit("http://localhost:4200/admin");
+    cy.location('pathname').should('eq', '/login');
   });
+
+  it("Should try to access page devices without being logged in ", () => {
+    cy.visit("http://localhost:4200/devices");
+    cy.location('pathname').should('eq', '/login');
+  });
+
+  it("Should try to access page dashboard without being logged in ", () => {
+    cy.visit("http://localhost:4200/dashboard");
+    cy.location('pathname').should('eq', '/login');
+  });
+
+  it("Should try to access page user without being logged in ", () => {
+    cy.visit("http://localhost:4200/user");
+    cy.location('pathname').should('eq', '/login');
+  });
+
+  it("Should try to access page login without being logged in ", () => {
+    cy.visit("http://localhost:4200/login");
+    cy.location('pathname').should('eq', '/login');
+  });
+
+  it("Should try to access page with random url without being logged in ", () => {
+    cy.visit("http://localhost:4200/asdasd");
+    cy.contains('Page not found');
+    cy.location('pathname').should('eq', '/asdasd');
+  });
+
 
   it("Should test security while logged in", () => {
 
     // maybe add contains?  cy.contains('Logout');
-    cy.location('pathname').should('eq', '/'); //maybe empty
+   // cy.location('pathname').should('eq', '/'); //maybe empty
   });
-
-//test create,read update,read delete,read device
-
-
-
-
-  it("Should log out", () => {
-    cy.get('.logoutBtn').click();
-
-    cy.contains('Log in');
-    cy.location('pathname').should('eq', '/login');
-  })
 
 });

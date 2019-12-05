@@ -2,16 +2,16 @@
   <ul>
     <li *ngFor="let device of deviceList | async">
       Id: {{device.id}}, Comment: {{device.comment}}
-      <button mat-mini-fab color="primary" (click)="updateDevice(device.id)">
+      <button mat-mini-fab color="primary" data-cy="updateDevice" (click)="updateDevice(device.id)">
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-mini-fab color="warn" (click)="deleteDevice(device.id)">
+      <button mat-mini-fab color="warn" data-cy="deleteDevice" (click)="deleteDevice(device.id)">
         <mat-icon>delete</mat-icon>
       </button>
     </li>
   </ul>
 </div>
 
-<button mat-mini-fab id="createBtn" (click)="createDevice()">
+<button mat-mini-fab id="createBtn" data-cy="createDevice" (click)="createDevice()">
   <mat-icon>add</mat-icon>
 </button>

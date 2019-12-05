@@ -3,8 +3,7 @@ import {ConnectionService} from './connection.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {LoginDTO} from '../models/loginDTO.model';
-import decode from 'jwt_decode';
-//import {decode} from 'punycode';
+import decode from 'jwt-decode';
 import {Router} from '@angular/router';
 import {isThisTypeNode} from 'typescript';
 
@@ -64,10 +63,14 @@ export class AuthService {
 
   isAdmin() {
     const token = localStorage.getItem('access-token');
-    const decoded = decode(token);
-    const role = decoded.user_claims['role'];
-    const isAdmin = role === 'Admin' || role === 'SuperAdmin';
-    return isAdmin;
+    if (token){
+      const decoded = decode(token);
+      const role = decoded.user_claims['role'];
+      const isAdmin = role === 'Admin' || role === 'SuperAdmin';
+      return isAdmin;
+    }
+    return false;
+
   }
 
   getHttpOptions() {

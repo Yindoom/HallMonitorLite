@@ -36,6 +36,7 @@ import {DeviceOutputState} from './ngxs/device-output.state';
 import {DeviceState} from './ngxs/device.state';
 import { DeviceOutputTableDetailsComponent } from './components/device-output-table-details/device-output-table-details.component';
 import { H401Interceptor } from './services/http-interceptor';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { H401Interceptor } from './services/http-interceptor';
     DeviceOutputComponent,
     NavbarComponent,
     DeviceOutputTableDetailsComponent,
-    PasswordComponent
+    PasswordComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
