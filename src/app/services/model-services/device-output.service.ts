@@ -56,7 +56,6 @@ export class DeviceOutputService {
   }
 
   removeDeviceOutput(id: number) {
-    
     return this.httpClient.delete<DeviceOutput>(
       this.apiUrl + "?id=" + id,
       this.authService.getHttpOptions()

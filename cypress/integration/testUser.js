@@ -1,5 +1,3 @@
-import {describe, it} from "cypress";
-
 describe("Testing User", () => {
 
   it("Should login ", () => {

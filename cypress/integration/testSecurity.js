@@ -1,5 +1,3 @@
-import {describe, it} from "cypress";
-
 describe("Testing device", () => {
 
   //should try to access sites while not logged in

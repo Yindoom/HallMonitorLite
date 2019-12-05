@@ -3,10 +3,12 @@ import {ConnectionService} from './connection.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {LoginDTO} from '../models/loginDTO.model';
-import decode from 'jwt-decode';
+import decode from 'jwt_decode';
+//import {decode} from 'punycode';
 import {Router} from '@angular/router';
 import {isThisTypeNode} from 'typescript';
-//import {decode} from 'punycode';
+
+
 
 const httpOptions = {
   headers: new HttpHeaders({
