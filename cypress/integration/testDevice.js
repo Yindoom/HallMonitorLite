@@ -26,7 +26,7 @@ describe("Testing Device", () => {
     cy.contains('Comment:');
     //test the buttons too??
   });
-
+  /*
   it("Should create a new device", () => {
     cy.get('[data-cy=createDevice]').click();
     cy.get('[data-cy=comment]').type('New Device From Cypress');
@@ -38,7 +38,7 @@ describe("Testing Device", () => {
     it("Should see the newly created device", () => {
       cy.contains('Cypress Device');
   });
-  /*
+
     it("Should update device", () => {
       //click update button
       //change text

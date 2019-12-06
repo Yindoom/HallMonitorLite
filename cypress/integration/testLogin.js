@@ -13,7 +13,7 @@ describe("Testing login and logout", () => {
     cy.location('pathname').should('eq', '/dashboard');
   });
 
-  it('should show navbar', () => {
+  it('should show navbar when logged in', () => {
     cy.contains('Dashboard');
     cy.contains('User');
     cy.contains('Users');

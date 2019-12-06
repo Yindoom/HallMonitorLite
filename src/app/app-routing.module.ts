@@ -17,8 +17,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'table', component: TableComponent , canActivate: [AuthGuard]},
   {path: 'user', component: UserDetailsComponent, canActivate: [AuthGuard]},
-  {path: 'admin', component: AdminPageComponent, canActivate: [AdminGuard]},
-  {path: 'devices', component: DeviceComponent, canActivate: [AuthGuard]},
+  {path: 'users', component: AdminPageComponent, canActivate: [AdminGuard]},
+  {path: 'devices', component: DeviceComponent, canActivate: [AdminGuard]},
   {path: 'deviceOutputs', component: DeviceOutputComponent, canActivate: [AuthGuard]},
   {path: '**', component: PageNotFoundComponent}
 ];

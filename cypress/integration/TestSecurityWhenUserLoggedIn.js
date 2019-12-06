@@ -1,5 +1,6 @@
-describe("Testing device guards", () => {
-
+describe("Testing admin guard", () => {
+/*
+//could test that the user has access
   it("Should try to access page admin without being logged in ", () => {
     cy.visit("http://localhost:4200/admin");
     cy.location('pathname').should('eq', '/login');
@@ -35,7 +36,7 @@ describe("Testing device guards", () => {
   it("Should test security while logged in", () => {
 
     // maybe add contains?  cy.contains('Logout');
-   // cy.location('pathname').should('eq', '/'); //maybe empty
+    // cy.location('pathname').should('eq', '/'); //maybe empty
   });
-
+*/
 });
