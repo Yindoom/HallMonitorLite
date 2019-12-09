@@ -24,7 +24,7 @@ export class RemoveUser {
 }
 
 export class GetUsers {
-  static readonly type = '[User] Get';
+  static readonly type = '[User] GetAll';
 
   constructor() {
   }
@@ -38,7 +38,7 @@ export class GetById {
 }
 
 export class GetUserByIdFromDB {
-  static readonly type = '[User] Get';
+  static readonly type = '[User] GetDB';
 
   constructor(public id: number) {
   }

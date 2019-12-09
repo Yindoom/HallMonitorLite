@@ -22,35 +22,29 @@ describe("Testing Device", () => {
   });
 
   it("Should see a list of devices", () => {
-    cy.contains('Id:');
     cy.contains('Comment:');
-    //test the buttons too??
   });
+
   /*
   it("Should create a new device", () => {
     cy.get('[data-cy=createDevice]').click();
     cy.get('[data-cy=comment]').type('New Device From Cypress');
-    cy.get('[data-cy=adminId]').type('1');
     cy.contains('Create').click();
-    //does not actually create???
   });
 
-    it("Should see the newly created device", () => {
-      cy.contains('Cypress Device');
+  it("Should see the newly created device", () => {
+    cy.contains('New Device From Cypress');
   });
 
     it("Should update device", () => {
-      //click update button
-      //change text
-      //check text has changed
-      //change it back
-      //check it's successful
+      cy.get('[data-cy=updateDevice]').last().click();
+      cy.get('[data-cy=comment]').type('Edited Device From Cypress');
+      cy.contains('Edited Device From Cypress');
     });
 
-    it("Should remove device", () => {
-      //click trashcan
-      cy.get('[data-cy=deleteDevice]');
-      //check it's not there
-    });
+      it("Should remove device", () => {
+        cy.get('[data-cy=deleteDevice]').last().click();
+        //check it's not there
+      });
   */
 });

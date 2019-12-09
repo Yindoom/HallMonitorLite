@@ -19,7 +19,7 @@ export class RemoveDeviceOutput{
 }
 
 export class GetDeviceOutputs{
-  static readonly type = '[DeviceOutput] Get';
+  static readonly type = '[DeviceOutput] GetAll';
 
   constructor() {}
 }

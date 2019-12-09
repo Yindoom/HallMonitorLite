@@ -21,16 +21,14 @@ export class AdminPageComponent implements OnInit {
   constructor(private dialog: MatDialog, private store: Store) {}
 
   ngOnInit() {
-    console.log('console');
     this.store.dispatch(new GetUsers());
   }
 
   deleteUser(id: number) {
     this.store.dispatch(new RemoveUser(id));
   }
-//need to test if pipe is working
   updateUser(id: number) {
-    this.store.dispatch(new GetById(id)).pipe(take(1)).subscribe(() => {
+    this.store.dispatch(new GetById(id)).subscribe(() => {
       this.dialog.open(UserCreateUpdateComponent, {
         data: {edit: true}
       });

@@ -22,7 +22,7 @@ export class RemoveDevice {
 }
 
 export class GetDevices {
-  static readonly type = '[Device] Get';
+  static readonly type = '[Device] GetAll';
 
   constructor() {
   }

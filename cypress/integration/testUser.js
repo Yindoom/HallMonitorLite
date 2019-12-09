@@ -16,14 +16,38 @@ describe("Testing User", () => {
     cy.location('pathname').should('eq', '/login');
   });
 
-  it("Should test user functionality while logged in", () => {
-
-    // maybe add contains?  cy.contains('Logout');
-    cy.contains('Users').click();
-    cy.location('pathname').should('eq', '/admin');
+  it("Should route to the user page when clicking the user in navbar", () => {
+    cy.contains('User').click();
+    cy.location('pathname').should('eq', '/user');
   });
 
-//test create,read update,read delete,read user
+  it("Should see the logged in user", () => {
+    cy.contains('Id:');
+    cy.contains('Username:');
+    cy.contains('Email:');
+   // cy.contains('oldEmail@email.dk');
+    cy.contains('Admin'); //or whichever user we decide to do it with
+  });
+/*
+  it("Should update the logged in user", () => {
+    cy.contains('Update User').click();
+    cy.contains('oldEmail@email.dk').clear().type('newEmail@email.dk'); //type, might need get+ id instead of contains
+    cy.contains('Update').click();
 
+  });
 
+  it("Should see the newly updated user info", () => {
+    cy.contains('newEmail@email.dk');
+  });
+
+  it("Should update the logged in user to the original information", () => {
+    cy.contains('Update User').click();
+    cy.contains('').clear().type('oldEmail@email.dk'); //type, might need get+ id instead of contains
+    cy.contains('Update').click();
+  });
+
+  it("Should see the original user info", () => {
+    cy.contains('oldEmail@email.dk');
+  });
+*/
 });
