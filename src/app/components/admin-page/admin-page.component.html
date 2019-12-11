@@ -2,16 +2,16 @@
     <ul>
         <li *ngFor="let user of userList | async">
             Id: {{user.id}}, Email: {{user.email}}, Role: {{user.role}}
-            <button mat-mini-fab color="primary" (click)="updateUser(user.id)">
+            <button mat-mini-fab color="primary" data-cy="updateUser" (click)="updateUser(user.id)">
                 <mat-icon>edit</mat-icon>
             </button>
-            <button mat-mini-fab color="warn" (click)="deleteUser(user.id)">
+            <button mat-mini-fab color="warn" data-cy="deleteUser" (click)="deleteUser(user.id)">
                 <mat-icon>delete</mat-icon>
             </button>
         </li>
     </ul>
 </div>
 
-<button mat-mini-fab id="createBtn" (click)="createUser()">
+<button mat-mini-fab id="createBtn" data-cy="createUser" (click)="createUser()">
     <mat-icon>add</mat-icon>
 </button>

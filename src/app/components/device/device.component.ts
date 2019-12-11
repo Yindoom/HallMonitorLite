@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Observable, Subscription} from 'rxjs';
 import {DeviceState} from '../../ngxs/device.state';
 import {Device} from '../../models/device.model';
 import {Store, Select} from '@ngxs/store';

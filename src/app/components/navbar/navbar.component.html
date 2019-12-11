@@ -4,11 +4,11 @@
 
     <div class="big-navigation-container">
 
-      <a *ngIf="isLoggedIn" routerLink="" class="screen-navigation-controls"> Main </a>
+      <a *ngIf="isLoggedIn" routerLink="" class="screen-navigation-controls"> Dashboard </a>
 
       <a *ngIf="isLoggedIn" routerLink="/user" class="screen-navigation-controls"> User </a>
 
-      <a *ngIf="isAdminLoggedIn" routerLink="/admin" class="screen-navigation-controls"> Users </a>
+      <a *ngIf="isAdminLoggedIn" routerLink="/users" class="screen-navigation-controls"> Users </a>
 
       <a *ngIf="isAdminLoggedIn" routerLink="/devices" class="screen-navigation-controls"> Devices </a>
 

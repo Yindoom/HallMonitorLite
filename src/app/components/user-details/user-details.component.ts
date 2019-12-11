@@ -27,11 +27,11 @@ export class UserDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new GetUserByIdFromDB(this.authService.getLoggedInUserId()));
+      this.store.dispatch(new GetUserByIdFromDB(this.authService.getLoggedInUserId()));
 
-    this.editUser.subscribe(u => {
-      this.user = u;
-    });
+      this.editUser.subscribe(u => {
+        this.user = u;
+      });
   }
 
   updateUser(id: number) {

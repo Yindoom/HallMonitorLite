@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {Select, Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
 import {DeviceState} from '../../ngxs/device.state';
@@ -15,8 +15,7 @@ import {AddDevice, GetDevices, UpdateDevice} from '../../ngxs/device.actions';
 export class DeviceCreateUpdateComponent implements OnInit {
 
   deviceForm = new FormGroup({
-    comment: new FormControl(''),
-    admin_id: new FormControl('')
+    comment: new FormControl('')
   });
 
   device: Device;
@@ -25,7 +24,8 @@ export class DeviceCreateUpdateComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private dialogRef: MatDialogRef<DeviceCreateUpdateComponent>,
-              private store: Store) {
+              private store: Store,
+              private snackbar: MatSnackBar) {
   }
 
   @Select(DeviceState.getDeviceById) editDevice: Observable<Device>;
@@ -44,17 +44,22 @@ export class DeviceCreateUpdateComponent implements OnInit {
 
   patchValues(device: Device) {
     this.deviceForm.patchValue({
-      comment: device.comment,
-      admin_id: device.admin_id
+      comment: device.comment
     });
   }
 
   deviceUpdateCreate() {
     const d: Device = this.deviceForm.value;
     if (this.edit) {
-      this.store.dispatch(new UpdateDevice(this.device.id, d)).subscribe(() => this.dialogRef.close());
+      this.store.dispatch(new UpdateDevice(this.device.id, d)).subscribe(() => {
+        this.dialogRef.close();
+        this.snackbar.open('You just updated ' + d.comment, 'Ok', {duration: 3000});
+      });
     } else {
-      this.store.dispatch(new AddDevice(d)).subscribe(() => this.dialogRef.close());
+      this.store.dispatch(new AddDevice(d)).subscribe(() => {
+        this.dialogRef.close();
+        this.snackbar.open('You just added ' + d.comment, 'Ok', {duration: 3000});
+      });
     }
   }
 }

@@ -1,19 +1,19 @@
-<form [formGroup]="userForm" (ngSubmit)="userUpdateCreate()">
+<form [formGroup]="userForm">
     <mat-form-field>
-        <input matInput type="text" placeholder="Email" formControlName="email">
+        <input matInput data-cy="email"  type="text" placeholder="Email" formControlName="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
     </mat-form-field>
   <br>
     <mat-form-field>
-        <input matInput type="text" placeholder="Username" formControlName="username">
+        <input matInput data-cy="username"  type="text" placeholder="Username" formControlName="username" minlength="5" required>
     </mat-form-field>
   <br>
     <mat-form-field>
-        <input matInput type="password" placeholder="New Password" formControlName="password">
+        <input matInput data-cy="password"  type="password" placeholder="New Password" formControlName="password" minlength="5" required>
     </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput type="password" placeholder="Repeat New Password" formControlName="repeatedPassword">
+    <input matInput data-cy="passwordTwo"  type="password" placeholder="Repeat New Password" formControlName="repeatedPassword" minlength="5" required>
   </mat-form-field>
   <br>
-    <button mat-button type="submit">{{btnMessage}}</button>
+    <button mat-button (click)="userUpdateCreate()">{{btnMessage}}</button>
 </form>

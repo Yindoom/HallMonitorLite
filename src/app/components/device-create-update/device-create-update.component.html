@@ -1,9 +1,6 @@
-<form [formGroup]="deviceForm" (ngSubmit)="deviceUpdateCreate()">
+<form [formGroup]="deviceForm">
   <mat-form-field>
-    <input matInput type="text" placeholder="comment" formControlName="comment">
+    <input matInput data-cy="comment" type="text" placeholder="comment" formControlName="comment" minlength="4" required>
   </mat-form-field>
-  <mat-form-field>
-    <input matInput type="text" placeholder="admin" formControlName="admin_id">
-  </mat-form-field>
-  <button mat-button type="submit">{{btnMessage}}</button>
+  <button mat-button (click)="deviceUpdateCreate()">{{btnMessage}}</button>
 </form>

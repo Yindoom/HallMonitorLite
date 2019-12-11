@@ -9,15 +9,18 @@ import {DeviceComponent} from './components/device/device.component';
 import {DeviceOutputComponent} from './components/device-output/device-output.component';
 import {AuthGuard} from './guards/auth.guard';
 import {AdminGuard} from './guards/admin.guard';
+import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  {path: '', component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'table', component: TableComponent , canActivate: [AuthGuard]},
   {path: 'user', component: UserDetailsComponent, canActivate: [AuthGuard]},
-  {path: 'admin', component: AdminPageComponent, canActivate: [AdminGuard]},
-  {path: 'devices', component: DeviceComponent, canActivate: [AuthGuard]},
-  {path: 'deviceOutputs', component: DeviceOutputComponent, canActivate: [AuthGuard]}
+  {path: 'users', component: AdminPageComponent, canActivate: [AdminGuard]},
+  {path: 'devices', component: DeviceComponent, canActivate: [AdminGuard]},
+  {path: 'deviceOutputs', component: DeviceOutputComponent, canActivate: [AuthGuard]},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
