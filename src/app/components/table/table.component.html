@@ -1,19 +1,28 @@
-<form>
- <input type="number" name="quantity" min="1" value="{{pickedNumber}}">
+<form (ngSubmit)="updateTimeInterval()">
+  <input type="number" name="quantity" min="1" value="{{timeInterval}}" [formControl]="timeIntervalForm">
   <input type="submit">
-  {{pickedNumber}}
 </form>
 
+<div lass="panel-body" align="center">
+  <button (click)="changeWeekWithArrow(false)" style="display: inline-block">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <h1 style="display: inline-block">my NO CSS table</h1>
+  <button (click)="changeWeekWithArrow(true)">
+    <mat-icon>arrow_forward</mat-icon>
+  </button>
+</div>
+
 <div class="panel-body" align="center">
-  <h1 style="align-items: center">my NO CSS table</h1>
+
   <table>
     <tr>
-      <th *ngFor="let col of getDaysForCurrentWeek()">
+      <th *ngFor="let col of headers">
         {{col}}
       </th>
     </tr>
     <tr *ngFor="let row of rows">
-      <td *ngFor="let col of getDaysForCurrentWeek()" (click)="getDeviceOutputForValue(row, 60, col)">
+      <td *ngFor="let col of headers" (click)="getDeviceOutputForValue(row, col)">
         {{row[col]}}
       </td>
     </tr>

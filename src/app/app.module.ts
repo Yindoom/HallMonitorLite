@@ -36,6 +36,7 @@ import {DeviceOutputState} from './ngxs/device-output.state';
 import {DeviceState} from './ngxs/device.state';
 import { DeviceOutputTableDetailsComponent } from './components/device-output-table-details/device-output-table-details.component';
 import { H401Interceptor } from './services/http-interceptor';
+import {MomentModule} from 'ngx-moment';
 
 
 @NgModule({
@@ -56,6 +57,12 @@ import { H401Interceptor } from './services/http-interceptor';
     PasswordComponent
   ],
   imports: [
+    MomentModule,
+    MomentModule.forRoot({
+      relativeTimeThresholdOptions: {
+        'm': 59
+      }
+    }),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

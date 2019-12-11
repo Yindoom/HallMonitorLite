@@ -30,7 +30,9 @@
     "cypress": "^3.6.1",
     "hammerjs": "^2.0.8",
     "jwt-decode": "^2.2.0",
+    "moment": "^2.24.0",
     "ng2-charts": "^2.3.0",
+    "ngx-moment": "^3.5.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

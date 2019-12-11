@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {DatePipe} from '@angular/common';
 import {DeviceOutputService} from '../../services/model-services/device-output.service';
-import {DateService} from '../../services/date.service';
 import {MatDialog} from '@angular/material';
-import {UserCreateUpdateComponent} from '../user-create-update/user-create-update.component';
+import * as moment from 'moment';
+import {FormControl, FormGroup} from '@angular/forms';
 import {DeviceOutputTableDetailsComponent} from '../device-output-table-details/device-output-table-details.component';
+
 
 @Component({
   selector: 'app-table',
@@ -12,62 +12,71 @@ import {DeviceOutputTableDetailsComponent} from '../device-output-table-details/
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-  headers = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  defaultHeaders = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  headers = this.defaultHeaders;
   rows = [];
-  orderNumber = 0;
-  dayOfTheWeek = 1;
-  pickedNumber: number;
-  defaultToDate = new Date();
-  defaultFromDate;
-  datePipe = new DatePipe('en-US');
+  orderNumber;
+  dayOfTheWeek;
+  defaultFromDate = moment().subtract(6, 'days').set({h: 0, m: 0, s: 0});
+  defaultToDate = moment();
+  numberOfCurrentWeek = moment().isoWeek();
+  timeInterval = 60;
 
-  constructor(private deviceOutputService: DeviceOutputService, private dateService: DateService, private dialog: MatDialog) {}
+  timeIntervalForm = new FormControl('');
+
+  constructor(private deviceOutputService: DeviceOutputService, private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.changeTimeForFromDate();
-    this.getDeviceOutputInTimeInterval(this.defaultFromDate, this.defaultToDate , 60);
-    this.fillTableWithDates(60);
+    this.updateTable(true);
   }
 
-  changeTimeForFromDate() {
-    this.defaultFromDate = new Date(new Date().setDate(new Date().getDate() - 6));
-    this.defaultFromDate.setHours(0, 0, 0);
-    this.dayOfTheWeek = this.defaultFromDate.getDay();
+  updateTable(isUpdateDays) {
+    this.orderNumber = 0;
+    this.dayOfTheWeek = this.defaultFromDate.isoWeekday();
+    if (isUpdateDays === true) {
+      this.getDaysForCurrentWeek();
+    }
+    this.fillTableWithDates(this.timeInterval);
+    this.getDeviceOutputInTimeInterval(this.defaultFromDate, this.defaultToDate, this.timeInterval);
   }
 
-  getDaysForCurrentWeek(): any[] {
- /*   if (this.defaultToDate === new Date()) {*/
-      this.dayOfTheWeek = this.defaultToDate.getDay();
-      let currentDay = this.dayOfTheWeek;
+  updateTimeInterval() {
+    if (this.timeIntervalForm.value !== '') {
+      this.timeInterval = this.timeIntervalForm.value;
+      this.updateTable(false);
+    }
+}
+
+  getDaysForCurrentWeek() {
+    if (this.defaultToDate.isoWeek() === this.numberOfCurrentWeek) {
+      let currentDay = this.defaultToDate.isoWeekday();
       let newDateArray = [''];
-      for (let i = currentDay + 1 ; i < 8; i++) {
+      for (let i = currentDay + 1; i < 8; i++) {
         newDateArray.push(this.headers[i]);
       }
       for (let i = 1; i < currentDay + 1; i++) {
         newDateArray.push(this.headers[i]);
       }
-      return newDateArray;
-   /* } else {
-      return this.headers;
-    }*/
+      this.headers = newDateArray;
+    } else {
+      this.headers = this.defaultHeaders;
+    }
   }
 
   fillTableWithDates(interval) {
-    let from_time;
-    let to_time;
+    this.rows = [];
+    const date = moment(this.defaultFromDate);
     do {
-      from_time = this.datePipe.transform(this.defaultFromDate, 'HH:mm');
-      this.defaultFromDate.setMinutes(this.defaultFromDate.getMinutes() + interval);
-      to_time = this.datePipe.transform(this.defaultFromDate, 'HH:mm');
-      this.rows.push({'': from_time + '-' + to_time, Monday: '-',
+      this.rows.push({Date: date.format('YYYY-MM-DD HH:mm:ss'),
+        '': date.format('HH:mm') + '-' + date.add(interval, 'minutes').format('HH:mm'), Monday: '-',
         Tuesday: '-',
         Wednesday: '-',
         Thursday: '-',
         Friday: '-',
         Saturday: '-',
-        Sunday: '-', Date: 'date'});
+        Sunday: '-'});
     }
-    while (this.defaultFromDate.getDay() === this.dayOfTheWeek);
+    while (date.isoWeekday() === this.defaultFromDate.isoWeekday());
   }
 
   getDeviceOutputInTimeInterval(fromDate, toDate, timeIntervalInMinutes) {
@@ -76,11 +85,14 @@ export class TableComponent implements OnInit {
       for (let key in deviceOutput) {
         let numberOfPeople = 0;
         if (deviceOutput[key].length === 0) {
-          let date = new Date(key);
-
-          if (this.dayOfTheWeek !== date.getDay() && this.orderNumber !== 0) {
+          let date = moment.utc(key).local();
+          // i guess i need this dunno why tho
+          /*if (this.dayOfTheWeek !== date.isoWeekday() && this.orderNumber !== 0) {
             this.orderNumber = 0;
-            this.dayOfTheWeek = date.getDay();
+            this.dayOfTheWeek = date.isoWeekday();*/
+          if (this.orderNumber === this.rows.length - 1) {
+            this.orderNumber = 0;
+            this.dayOfTheWeek = date.isoWeekday();
           } else {
             this.orderNumber++;
           }
@@ -89,63 +101,70 @@ export class TableComponent implements OnInit {
             numberOfPeople += thin.number_of_people;
           });
           numberOfPeople = (numberOfPeople / deviceOutput[key].length);
-          this.orderNumber++;
           this.sortNumberOfPeopleByDayOfTheWeek(key, numberOfPeople.toFixed(2));
+          this.orderNumber++;
         }
       }
     });
   }
 
   sortNumberOfPeopleByDayOfTheWeek(dateOfPicture, numberOfPeople) {
-    let date = new Date(dateOfPicture);
-    let dayOftheWeek = date.getDay();
+    let date = moment.utc(dateOfPicture).local();
+    let dayOftheWeek = date.isoWeekday();
 
-    if (this.dayOfTheWeek !== dayOftheWeek && this.orderNumber !== 0) {
+    if (this.orderNumber === this.rows.length) {
       this.orderNumber = 0;
       this.dayOfTheWeek = dayOftheWeek;
     }
-    this.rows[this.orderNumber].Date = date;
+    /*if (this.dayOfTheWeek !== dayOftheWeek && this.orderNumber !== 0 || this.orderNumber === this.rows.length) {
+      this.orderNumber = 0;
+      this.dayOfTheWeek = dayOftheWeek;
+    }*/
+    this.updateValueInRow(dayOftheWeek, this.orderNumber, numberOfPeople);
+  }
 
+  updateValueInRow(dayOftheWeek, indexNumber, numberOfPeople) {
     switch (dayOftheWeek) {
-      case 0:
-        this.rows[this.orderNumber].Sunday = numberOfPeople;
-        break;
       case 1:
-        this.rows[this.orderNumber].Monday = numberOfPeople;
+        this.rows[indexNumber].Monday = numberOfPeople;
         break;
       case 2:
-        this.rows[this.orderNumber].Tuesday = numberOfPeople;
+        this.rows[indexNumber].Tuesday = numberOfPeople;
         break;
       case 3:
-        this.rows[this.orderNumber].Wednesday = numberOfPeople;
+        this.rows[indexNumber].Wednesday = numberOfPeople;
         break;
       case 4:
-        this.rows[this.orderNumber].Thursday = numberOfPeople;
+        this.rows[indexNumber].Thursday = numberOfPeople;
         break;
       case 5:
-        this.rows[this.orderNumber].Friday = numberOfPeople;
+        this.rows[indexNumber].Friday = numberOfPeople;
         break;
       case 6:
-        this.rows[this.orderNumber].Saturday = numberOfPeople;
+        this.rows[indexNumber].Saturday = numberOfPeople;
+        break;
+      case 7:
+        this.rows[indexNumber].Sunday = numberOfPeople;
         break;
     }
   }
 
-  getDeviceOutputForValue(row, timeInterval, col) {
-    let thing = new Date(row.Date);
-    console.log('ROW');
-    console.log(this.rows.indexOf(row));
-    let dayOfTheWeek = this.getDayOfTheWeekAsNumber(col);
-    this.changeTimeForFromDate();
-    let dateWithoutTime = this.getDateBasedOnDayOfTheWeek(dayOfTheWeek, this.defaultFromDate);
-    dateWithoutTime.setHours(thing.getHours());
-    dateWithoutTime.setMinutes(thing.getMinutes());
+  getDeviceOutputForValue(row, col) {
+    const localTimeOfOutput = moment(row.Date);
 
-    let fromDate = new Date(dateWithoutTime.setMinutes(dateWithoutTime.getMinutes() + timeInterval));
-    let toDate = new Date(dateWithoutTime.setMinutes(dateWithoutTime.getMinutes() + timeInterval));
-    this.deviceOutputService.getDeviceOutputByTimestampAndId(1, {from_date: fromDate, to_date: toDate.toISOString(), interval: timeInterval}).subscribe(deviceOutput => {
+    const dayOfTheWeek = this.getDayOfTheWeekAsNumber(col);
+    const dateWithoutTime = this.getDateBasedOnDayOfTheWeek(dayOfTheWeek, this.defaultFromDate);
+    dateWithoutTime.set({h: localTimeOfOutput.hours(), m: localTimeOfOutput.minutes()});
+
+    const fromDate = dateWithoutTime;
+    const toDate = moment(dateWithoutTime).add(this.timeInterval, 'minutes');
+
+    this.deviceOutputService.getDeviceOutputByTimestampAndId(1, {from_date: fromDate, to_date: toDate, interval: this.timeInterval}).subscribe(deviceOutput => {
+      console.log(deviceOutput);
       this.dialog.open(DeviceOutputTableDetailsComponent, {
         data: deviceOutput
+      }).afterClosed().subscribe(response => {
+        this.updateValueInRow(dayOfTheWeek, this.rows.indexOf(row), response.numberOfPeople.toFixed(2));
       });
     });
   }
@@ -165,15 +184,42 @@ export class TableComponent implements OnInit {
       case 'Saturday':
         return 6;
       case 'Sunday':
-        return 0;
+        return 7;
     }
     return -1;
   }
 
   getDateBasedOnDayOfTheWeek(dayOfTheWeek, fromDate) {
-    while (fromDate.getDay() !== dayOfTheWeek) {
-      fromDate = new Date(fromDate.setDate(fromDate.getDate() + 1));
+    let startDate = moment(fromDate);
+    while (startDate.isoWeekday() !== dayOfTheWeek) {
+      startDate = startDate.add(1, 'days');
     }
-    return fromDate;
+    return startDate;
+  }
+
+  changeWeekWithArrow(isFuture) {
+    let newWeek;
+
+    if (isFuture === true && this.numberOfCurrentWeek !== this.defaultToDate.isoWeek()) {
+       newWeek = moment(this.defaultToDate).add(1, 'weeks');
+
+       if (newWeek.isoWeek() === this.numberOfCurrentWeek) {
+        this.defaultToDate = moment();
+        this.defaultFromDate = moment().subtract(6, 'days').set({h: 0, m: 0, s: 0});
+      } else {
+         this.defaultFromDate = moment(newWeek.startOf('isoWeek'));
+         this.defaultToDate = moment(newWeek.endOf('isoWeek'));
+       }
+
+       this.updateTable(true);
+
+    } else if (isFuture === false) {
+       newWeek = moment(this.defaultToDate).subtract(1, 'weeks');
+
+       this.defaultFromDate = moment(newWeek.startOf('isoWeek'));
+       this.defaultToDate = moment(newWeek.endOf('isoWeek'));
+
+       this.updateTable(true);
+    }
   }
 }
