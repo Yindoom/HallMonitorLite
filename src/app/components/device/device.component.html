@@ -23,9 +23,14 @@
                 </mat-card>
               </li>
             </ul>
-            <button mat-raised-button color="primary" style="float: right; margin-right: 2.5%;" (click)="updateDeviceRuntimes()">
-              <p style="color: #ffd900;">Update device runtimes</p>
-            </button>
+            <div style="float: right; margin-right: 2.5%;">
+              <button mat-raised-button color="primary" style="margin-right: 20px;" (click)="updateDeviceRuntimes()">
+                <p style="color: #ffd900;">Update run hours</p>
+              </button>
+              <button mat-raised-button color="primary" (click)="updateDeviceRuntimes()">
+                <p style="color: #ffd900;">Update run minutes</p>
+              </button>
+            </div>
           </div>
         </mat-card-content>
       </mat-card>

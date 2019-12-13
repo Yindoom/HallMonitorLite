@@ -31,7 +31,6 @@ export class DeviceRuntimesUpdateComponent implements OnInit {
 
   deviceUpdateRuntime(fromHour: number, toHour: number) {
     if (fromHour && toHour) {
-      console.log(this.deviceIds, fromHour, toHour, this.runTimes);
       this.mqttService.updateHoursToRunBetween(this.deviceIds, fromHour, toHour).subscribe();
       this.mqttService.updateMinutesToRunAt(this.deviceIds, this.runTimes).subscribe();
     }
