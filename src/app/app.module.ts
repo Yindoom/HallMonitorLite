@@ -15,7 +15,7 @@ import {DeviceOutputComponent} from './components/device-output/device-output.co
 import {DeviceOutputCreateUpdateComponent} from './components/device-output-create-update/device-output-create-update.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {PasswordComponent} from './components/password/password.component';
-
+import {MatCardModule} from '@angular/material/card';
 import {PDFExportModule} from '@progress/kendo-angular-pdf-export';
 import {ChartsModule} from 'ng2-charts';
 import {MatInputModule} from '@angular/material/input';
@@ -37,6 +37,8 @@ import {DeviceState} from './ngxs/device.state';
 import { DeviceOutputTableDetailsComponent } from './components/device-output-table-details/device-output-table-details.component';
 import { H401Interceptor } from './services/http-interceptor';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { DeviceRuntimesUpdateComponent } from './components/device-runtimes-update/device-runtimes-update.component';
+import { DeviceHoursToRunBetweenUpdateComponent } from './components/device-hours-to-run-between-update/device-hours-to-run-between-update.component';
 
 
 @NgModule({
@@ -55,12 +57,15 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     NavbarComponent,
     DeviceOutputTableDetailsComponent,
     PasswordComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DeviceRuntimesUpdateComponent,
+    DeviceHoursToRunBetweenUpdateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatButtonModule,
     ReactiveFormsModule,
     FormsModule,
     PDFExportModule,
@@ -71,6 +76,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     MatSnackBarModule,
     MatSidenavModule,
     MatInputModule,
+    MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -85,7 +91,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     DeviceCreateUpdateComponent,
     DeviceOutputCreateUpdateComponent,
     DeviceOutputTableDetailsComponent,
-    PasswordComponent
+    PasswordComponent,
+    DeviceRuntimesUpdateComponent,
+    DeviceHoursToRunBetweenUpdateComponent
   ],
   providers: [
     {

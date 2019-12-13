@@ -1,17 +1,32 @@
-<div *ngIf="deviceList">
-  <ul>
-    <li *ngFor="let device of deviceList | async">
-      Id: {{device.id}}, Comment: {{device.comment}}
-      <button mat-mini-fab color="primary" data-cy="updateDevice" (click)="updateDevice(device.id)">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-mini-fab color="warn" data-cy="deleteDevice" (click)="deleteDevice(device.id)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </li>
-  </ul>
-</div>
-
-<button mat-mini-fab id="createBtn" data-cy="createDevice" (click)="createDevice()">
-  <mat-icon>add</mat-icon>
+<button mat-mini-fab id="createBtn" color="primary" data-cy="createDevice" (click)="createDevice()">
+    <mat-icon style="color: #ffd900;">add</mat-icon>
 </button>
+<div class="main-div">
+    <mat-card>
+        <mat-card-content>
+          <div *ngIf="deviceList">
+            <ul style="list-style-type: none; padding: 0; margin: 0;">
+              <li *ngFor="let device of deviceList | async">
+                <mat-card style="background-color: white; margin: 25px; width: 91.5%;">
+                  <div style="height: 10px;">
+                    Id: {{device.id}}, Comment: {{device.comment}}
+                    <div style="float: right;">
+                      <button mat-mini-fab color="primary" data-cy="updateDevice" (click)="updateDevice(device.id)">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-mini-fab color="warn" data-cy="deleteDevice" (click)="deleteDevice(device.id)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                      <input type="checkbox" (click)="addDeviceId(device.id)">
+                    </div>
+                  </div>
+                </mat-card>
+              </li>
+            </ul>
+            <button mat-raised-button color="primary" style="float: right; margin-right: 2.5%;" (click)="updateDeviceRuntimes()">
+              <p style="color: #ffd900;">Update device runtimes</p>
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+</div>
