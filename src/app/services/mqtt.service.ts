@@ -31,7 +31,7 @@ export class MqttService {
     const json = JSON.stringify({ device_ids: deviceIds, hour_to_start_at: fromHour, hour_to_stop_at: toHour});
     console.log(json);
     return this.httpClient.put<any>(
-      this.apiUrl + '/updateminutestorunat',
+      this.apiUrl + "/updatehourstorunbetween",
       json,
       this.authService.getHttpOptions()
     );
@@ -41,7 +41,7 @@ export class MqttService {
     const json = JSON.stringify({ device_ids: deviceIds, minutes_to_run_at: runTimes});
     console.log(runTimes);
     return this.httpClient.put<any>(
-      this.apiUrl + '/updatehourstorunbetween',
+      this.apiUrl + "/updateminutestorunat",
       json,
       this.authService.getHttpOptions()
     );
