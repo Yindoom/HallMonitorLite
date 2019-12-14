@@ -8,24 +8,18 @@
 
 .screen-navigation-controls {
   font-size: 16px;
-  font-weight: 600;
-  color: palevioletred;
+  color: #ffd900;
   text-decoration: none;
   margin: 0 20px;
 }
 
 .mat-toolbar {
-  background: #f2f2f2;
+  background: #4550AC;
 }
 
 a {
   text-shadow: -.25px -.25px 0 transparent,
   .25px .25px transparent;
-}
-
-a:hover {
-  text-shadow: -.25px -.25px 0 palevioletred,
-  .25px .25px palevioletred;
 }
 
 @media only screen and (max-width: 600px) {

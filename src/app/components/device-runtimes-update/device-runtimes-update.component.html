@@ -1,0 +1,13 @@
+<mat-form-field style="width: 100%;">
+    <p>Type the minute you want the device(s) selected to run at in the field below. Click the + button to add the value</p>
+    <input matInput type="number" minlength="1" min="0" max="59" #runTime required>
+</mat-form-field>
+<button mat-mini-fab color="primary" (click)="addRuntime(runTime.value)">
+    <mat-icon style="color: #ffd900;">add</mat-icon>
+</button>
+<button mat-mini-fab color="primary" style="float: right;" (click)="deviceUpdateRuntime()">
+    <mat-icon style="color: #ffd900;">done</mat-icon>
+</button>
+<ul>
+    <li *ngFor="let number of runTimes">{{number}}</li>
+</ul>

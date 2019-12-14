@@ -1,17 +1,26 @@
-<div *ngIf="userList">
-    <ul>
-        <li *ngFor="let user of userList | async">
-            Id: {{user.id}}, Email: {{user.email}}, Role: {{user.role}}
-            <button mat-mini-fab color="primary" data-cy="updateUser" (click)="updateUser(user.id)">
-                <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-mini-fab color="warn" data-cy="deleteUser" (click)="deleteUser(user.id)">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </li>
-    </ul>
-</div>
-
-<button mat-mini-fab id="createBtn" data-cy="createUser" (click)="createUser()">
-    <mat-icon>add</mat-icon>
+<button mat-mini-fab color="primary" data-cy="createUser" (click)="createUser()">
+    <mat-icon style="color: #ffd900;">add</mat-icon>
 </button>
+<div class="main-div">
+    <mat-card>
+        <mat-card-content>
+            <div *ngIf="userList">
+                <ul style="list-style-type: none; padding: 0; margin: 0;">
+                    <li *ngFor="let user of userList | async">
+                        <mat-card style="background-color: white; margin: 25px; height: 10px; width: 91.5%;">
+                            Id: {{user.id}}, Email: {{user.email}}, Role: {{user.role}}
+                            <div style="float: right;">
+                                <button mat-mini-fab color="primary" data-cy="updateUser" (click)="updateUser(user.id)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-mini-fab color="warn" data-cy="deleteUser" (click)="deleteUser(user.id)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </mat-card>
+                    </li>
+                </ul>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

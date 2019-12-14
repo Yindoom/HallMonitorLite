@@ -1,4 +1,11 @@
-#createBtn {
-    background-color: green;
-  float: right;
+.main-div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-card {
+  background-color: #ffd900;
+  width: 50%;
 }

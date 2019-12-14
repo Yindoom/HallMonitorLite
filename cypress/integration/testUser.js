@@ -17,7 +17,7 @@ describe("Testing User", () => {
   });
 
   it("Should route to the user page when clicking the user in navbar", () => {
-    cy.contains('User').click();
+    cy.contains('Userpage').click();
     cy.location('pathname').should('eq', '/user');
   });
 

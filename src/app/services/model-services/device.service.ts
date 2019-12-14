@@ -1,22 +1,21 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { ConnectionService } from "../connection.service";
-import { Device } from "../../models/device.model";
-import { Observable } from "rxjs";
-import { DeviceOutput } from "../../models/deviceOutput.model";
-import { AuthService } from "../auth.service";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ConnectionService } from '../connection.service';
+import { Device } from '../../models/device.model';
+import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class DeviceService {
-  private apiUrl;
+  private apiUrl: string;
   constructor(
     private httpClient: HttpClient,
     private authService: AuthService,
     private connectionService: ConnectionService
   ) {
-    this.apiUrl = this.connectionService.getConnectionUrl() + "device";
+    this.apiUrl = this.connectionService.getConnectionUrl() + 'device';
   }
 
   getDevices(): Observable<Device[]> {
@@ -28,7 +27,7 @@ export class DeviceService {
 
   getDeviceById(id: number): Observable<Device> {
     return this.httpClient.get<Device>(
-      this.apiUrl + "?id=" + id,
+      this.apiUrl + '?id=' + id,
       this.authService.getHttpOptions()
     );
   }
@@ -38,12 +37,12 @@ export class DeviceService {
       this.apiUrl,
       device,
       this.authService.getHttpOptions()
-    ); //JSON.stringify(device)
+    ); // JSON.stringify(device)
   }
 
   updateDevice(id, device: Device) {
     return this.httpClient.put<Device>(
-      this.apiUrl + "?id=" + id,
+      this.apiUrl + '?id=' + id,
       device,
       this.authService.getHttpOptions()
     );
@@ -51,6 +50,6 @@ export class DeviceService {
 
   deleteDevice(id: number) {
     const options = this.authService.getHttpOptions();
-    return this.httpClient.delete<Device>(this.apiUrl + "?id=" + id, options);
+    return this.httpClient.delete<Device>(this.apiUrl + '?id=' + id, options);
   }
 }
