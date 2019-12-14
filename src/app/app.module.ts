@@ -39,6 +39,7 @@ import { H401Interceptor } from './services/http-interceptor';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { DeviceRuntimesUpdateComponent } from './components/device-runtimes-update/device-runtimes-update.component';
 import { DeviceHoursToRunBetweenUpdateComponent } from './components/device-hours-to-run-between-update/device-hours-to-run-between-update.component';
+import { DeviceCommandlineComponent } from './components/device-commandline/device-commandline.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { DeviceHoursToRunBetweenUpdateComponent } from './components/device-hour
     PasswordComponent,
     PageNotFoundComponent,
     DeviceRuntimesUpdateComponent,
-    DeviceHoursToRunBetweenUpdateComponent
+    DeviceHoursToRunBetweenUpdateComponent,
+    DeviceCommandlineComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +95,8 @@ import { DeviceHoursToRunBetweenUpdateComponent } from './components/device-hour
     DeviceOutputTableDetailsComponent,
     PasswordComponent,
     DeviceRuntimesUpdateComponent,
-    DeviceHoursToRunBetweenUpdateComponent
+    DeviceHoursToRunBetweenUpdateComponent,
+    DeviceCommandlineComponent
   ],
   providers: [
     {

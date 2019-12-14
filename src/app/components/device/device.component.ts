@@ -9,6 +9,9 @@ import {DeviceCreateUpdateComponent} from '../device-create-update/device-create
 import {DeviceRuntimesUpdateComponent} from '../device-runtimes-update/device-runtimes-update.component';
 import { from } from 'rxjs';
 import { SharingService } from 'src/app/services/sharing.service';
+import { DeviceHoursToRunBetweenUpdateComponent } from '../device-hours-to-run-between-update/device-hours-to-run-between-update.component';
+import { DeviceCommandlineComponent } from '../device-commandline/device-commandline.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-device',
@@ -17,16 +20,27 @@ import { SharingService } from 'src/app/services/sharing.service';
 })
 export class DeviceComponent implements OnInit {
 
+  isSuperAdminLoggedIn: boolean;
+  isAdminLoggedIn: boolean;
   deviceIds = [];
   @Select(DeviceState.getDevices) deviceList: Observable<Device[]>;
 
   constructor(private store: Store,
               private dialog: MatDialog,
-              private sharingService: SharingService) {
+              private sharingService: SharingService,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
     this.store.dispatch(new GetDevices());
+
+    if (this.authService.checkAccessToken()) {
+      this.isAdminLoggedIn = this.authService.isAdmin();
+    }
+
+    if (this.authService.checkAccessToken()) {
+      this.isSuperAdminLoggedIn = this.authService.isSuperAdmin();
+    }
   }
 
   deleteDevice(id: number) {
@@ -53,8 +67,20 @@ export class DeviceComponent implements OnInit {
     this.sharingService.save(this.deviceIds);
   }
 
-  updateDeviceRuntimes(id: number) {
-    this.dialog.open(DeviceRuntimesUpdateComponent);
+  updateDeviceRuntimes() {
+    if (this.deviceIds.length > 0) {
+      this.dialog.open(DeviceRuntimesUpdateComponent);
+    }
+  }
+
+  updateDeviceRunHours() {
+    if (this.deviceIds.length > 0) {
+      this.dialog.open(DeviceHoursToRunBetweenUpdateComponent);
+    }
+  }
+
+  deviceCommandline() {
+    this.dialog.open(DeviceCommandlineComponent);
   }
 
   createDevice() {

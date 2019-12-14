@@ -24,10 +24,13 @@
               </li>
             </ul>
             <div style="float: right; margin-right: 2.5%;">
-              <button mat-raised-button color="primary" style="margin-right: 20px;" (click)="updateDeviceRuntimes()">
+              <button *ngIf="isSuperAdminLoggedIn" mat-raised-button color="primary" style="margin-right: 20px;" (click)="deviceCommandline()">
+                <p style="color: #ffd900;">Commandline input</p>
+              </button>
+              <button *ngIf="isAdminLoggedIn" mat-raised-button color="primary" style="margin-right: 20px;" (click)="updateDeviceRunHours()">
                 <p style="color: #ffd900;">Update run hours</p>
               </button>
-              <button mat-raised-button color="primary" (click)="updateDeviceRuntimes()">
+              <button *ngIf="isAdminLoggedIn" mat-raised-button color="primary" (click)="updateDeviceRuntimes()">
                 <p style="color: #ffd900;">Update run minutes</p>
               </button>
             </div>

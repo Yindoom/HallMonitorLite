@@ -1,0 +1,7 @@
+<mat-form-field style="width: 100%;">
+    <p>Commands will be executed in /bin</p>
+    <input type="text" style="width: 83%;" #command>
+</mat-form-field>
+<button mat-mini-fab color="primary" style="float: right;" (click)="commandline(command.value)">
+    <mat-icon style="color: #ffd900;">done</mat-icon>
+</button>

@@ -70,7 +70,17 @@ export class AuthService {
       return isAdmin;
     }
     return false;
+  }
 
+  isSuperAdmin() {
+    const token = localStorage.getItem('access-token');
+    if (token){
+      const decoded = decode(token);
+      const role = decoded.user_claims['role'];
+      const isAdmin = role === 'SuperAdmin';
+      return isAdmin;
+    }
+    return false;
   }
 
   getHttpOptions() {
@@ -104,6 +114,4 @@ export class AuthService {
     this.loggedSubject.next(false);
     this.router.navigate(['/login']);
   }
-
-
 }
