@@ -89,8 +89,10 @@ export class TableComponent implements OnInit {
   }
 
   getDeviceOutputInTimeInterval(fromDate, toDate, timeIntervalInMinutes) {
+    // tslint:disable-next-line: max-line-length
     this.deviceOutputService.getDeviceOutputByTimestampAndId(this.selectedDeviceId, {from_date: fromDate, to_date: toDate, interval: timeIntervalInMinutes})
       .subscribe(deviceOutput => {
+      // tslint:disable-next-line: forin
       for (const key in deviceOutput) {
         let numberOfPeople = 0;
         if (deviceOutput[key].length === 0) {
@@ -156,6 +158,7 @@ export class TableComponent implements OnInit {
     const fromDate = dateWithoutTime;
     const toDate = moment(dateWithoutTime).add(this.timeInterval, 'minutes');
 
+    // tslint:disable-next-line: max-line-length
     this.deviceOutputService.getDeviceOutputByTimestampAndId(this.selectedDeviceId, {from_date: fromDate, to_date: toDate, interval: this.timeInterval})
       .subscribe(deviceOutput => {
       this.dialog.open(DeviceOutputTableDetailsComponent, {

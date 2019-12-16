@@ -1,20 +1,22 @@
-<div class="container" style="min-width: 85% !important; max-width: 85% !important; margin: 0 auto !important;">
+<div class="main-div">
   <div *ngIf="deviceList">
   <div  *ngFor="let device of deviceList | async" id="device-container">
       <mat-card>
         <mat-card-content>
-          <div (click)="clickOnDevice(device.id)" class="device-name">Device Id: {{device.id}}</div>
-
+          <div style="cursor:pointer;" (click)="clickOnDevice(device.id)" class="device-name">Device {{device.id}}
+            <mat-icon color="warn" style="float: left; font-size: 16px; margin-top: 5px;">fiber_manual_record</mat-icon>
+            <mat-icon style="color: #ffd900; float: right; cursor:pointer;" (click)="clickOnDevice(device.id)">keyboard_arrow_right</mat-icon>
+          </div>
           <mat-expansion-panel>
             <mat-expansion-panel-header id="expansion-panel-header">
               <mat-panel-title id="expansion-panel-title">
-                Details
+                <p>Details</p>
               </mat-panel-title>
             </mat-expansion-panel-header>
             <!-- Content after expansion -->
             <div class="expansion-content">
-              <div class="device-description">comment: {{device.comment}}</div>
-              <div class="device-heartbeat">Last hearth beat: {{device.last_heartbeat}} </div>
+              <div class="device-description">Comment: {{device.comment}}</div>
+              <div class="device-heartbeat">Last heartbeat: {{device.last_heartbeat}} </div>
             </div>
           </mat-expansion-panel>
         </mat-card-content>

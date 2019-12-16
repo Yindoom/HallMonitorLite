@@ -1,31 +1,37 @@
-<form (ngSubmit)="updateTimeInterval()">
-  <input type="number" name="quantity" min="10" value="{{timeInterval}}" [formControl]="timeIntervalForm">
-  <input type="submit">
-</form>
-
-<div lass="panel-body" align="center">
-  <button (click)="changeWeekWithArrow(false)" style="display: inline-block">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
-  <h1 style="display: inline-block">Device Output Table</h1>
-  <button (click)="changeWeekWithArrow(true)">
-    <mat-icon>arrow_forward</mat-icon>
-  </button>
-</div>
-
-<div class="panel-body" align="center">
-
-  <table>
-    <tr>
-      <th *ngFor="let col of headers">
-        {{col}}
-      </th>
-    </tr>
-    <tr *ngFor="let row of rows">
-      <td *ngFor="let col of headers" (click)="getDeviceOutputForValue(row, col)">
-        {{row[col]}}
-      </td>
-    </tr>
-  </table>
+<mat-card style="width: fit-content; background-color: #ffd900; margin: 40px; padding: 20px; float: left; position: absolute;">
+  <mat-card style="width: fit-content; background-color: white;">
+    <mat-card-content>
+      <p>Change the time interval of the people count:</p>
+      <mat-form-field (ngSubmit)="updateTimeInterval()">
+        <input matInput type="number" name="quantity" min="10" value="{{timeInterval}}" [formControl]="timeIntervalForm">
+      </mat-form-field>
+      <button mat-mini-fab color="primary" style="float: right;" type="submit" (click)="updateTimeInterval()">
+          <mat-icon style="color: #ffd900;">done</mat-icon>
+      </button>
+    </mat-card-content>
+  </mat-card>
+</mat-card>
+<div class="main-div">
+  <div lass="panel-body" align="center">
+    <button mat-mini-fab (click)="changeWeekWithArrow(false)" color="primary" style="display: inline-block; color: #ffd900;">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <h1 style="display: inline-block; margin-left: 20px; margin-right: 20px;">Device Output Table</h1>
+    <button mat-mini-fab (click)="changeWeekWithArrow(true)" color="primary" style="color: #ffd900;">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+    <table>
+      <tr>
+        <th *ngFor="let col of headers">
+          {{col}}
+        </th>
+      </tr>
+      <tr *ngFor="let row of rows">
+        <td *ngFor="let col of headers" (click)="getDeviceOutputForValue(row, col)">
+          {{row[col]}}
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
 

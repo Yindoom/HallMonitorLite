@@ -1,26 +1,21 @@
+.main-div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 mat-form-field {
   padding: 5px;
   text-align: center;
 }
 
-#right {
-  text-align: right;
-}
-
 div {
   text-align: center;
-  // margin: 0 auto;
 }
 
-
 #deviceList {
-  float: right;
   overflow: scroll;
-  width: 45%;
-  height: 25%;
-  max-height: 225px;
-  margin: 10px;
-  border: 1px dotted #fd9fb3;
 }
 
 .tooltip {
@@ -30,31 +25,20 @@ div {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  background-color: black;
-  color: #fff;
+  background-color: #ffd900;
+  color: white;
   /*width: 120px;*/
   text-align: center;
   border-radius: 6px;
   /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
-
-  /*
-    bottom: 100%;
-      left: 50%;
-      margin-left: -60px;  Use half of the width (120/2 = 60), to center the tooltip */
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
-
-#chartStat {
-  width: 60%;
-  margin: 0 auto;
-}
-
 
 .mat-card:not([class*=mat-elevation-z]),.mat-card {
   box-shadow: none;
@@ -63,12 +47,13 @@ div {
 }
 
 .mat-card {
-  background-color: #e8e8e8;
+  background-color: white;
+  margin-top: 40px;
+  width: 100%;
 }
 
 .mat-expansion-panel-header {
   padding: 0 16px;
-  font-family: SansSerif, sans-serif;
   font-size: 18px;
 }
 
@@ -79,37 +64,31 @@ div {
 
 .mat-expansion-panel {
   border-radius: 0px;
-  background: #860f0f;
+  background: white;
 }
 
 .mat-expansion-indicator::after {
-  color: #e8e8e8;
+  color: white;
 }
 
-
 .container {
-  background-color: #fff;
+  background-color: white;
 }
 
 #expansion-panel-header {
-  background-color: #fff;
-}
-
-#expansion-panel-title {
-  color: #e8e8e8;
+  background-color: white
 }
 
 .expansion-content div {
   padding: 15px;
-
 }
 
 .device-name {
-  font-family: SansSerif, sans-serif;
   font-size: 20px;
   padding: 14px 10px;
-  background-color: #e8e8e8;
-  color: #424242;
+  background-color: #3A52C2;
+  color: #ffd900;
+  border-radius: 5px;
 }
 
 .mat-card-actions {
@@ -120,34 +99,10 @@ div {
 }
 
 .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
-  background: #860f0f;
+  background: white;
 }
 
 .expansion-content[_ngcontent-c6] div[_ngcontent-c6] {
-  background-color: #860f0f;
-  color: #e8e8e8;
-}
-
-@media only screen and (max-width: 600px) {
-  #device-container {
-    max-width: 100%;
-    min-width: 100%;
-    margin: 20px 0;
-  }
-}
-
-@media only screen and (min-width: 600px) {
-  #device-container {
-    max-width: 46%;
-    min-width: 46%;
-    margin: 13px 2%;
-  }
-}
-
-@media only screen and (min-width: 960px) {
-  #device-container {
-    max-width: 40%;
-    min-width: 40%;
-    margin: 13px 5%;
-  }
+  background-color: #3A52C2;
+  color: white;
 }
