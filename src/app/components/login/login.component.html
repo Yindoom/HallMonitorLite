@@ -1,13 +1,21 @@
-<div class="loginBox">
-    <form [formGroup]="loginForm" (ngSubmit)="login()" class="form">
-        <mat-form-field>
-            <input matInput placeholder="Username" type="text" formControlName="username" id="username">
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-            <input matInput placeholder="Password" type="password" formControlName="password" id="password">
-        </mat-form-field>
-        <br>
-        <button mat-button type="submit" id="loginBtn">Log in</button>
-    </form>
+<div class="main-div">
+    <mat-card style="margin-top: 15%;">
+        <mat-card-content>
+            <div class="loginBox">
+                <form [formGroup]="loginForm" (ngSubmit)="login()" class="form">
+                    <mat-form-field style="margin-left: 20%;">
+                        <input matInput placeholder="Username" type="text" formControlName="username" id="username">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field style="margin-left: 20%;">
+                        <input matInput placeholder="Password" type="password" formControlName="password" id="password">
+                    </mat-form-field>
+                    <br>
+                    <button mat-raised-button color="primary" style="margin-left: 40%;" type="submit" id="loginBtn">
+                        <mat-icon style="color: #ffd900;">lock_open</mat-icon>
+                    </button>
+                </form>
+            </div>
+        </mat-card-content>
+    </mat-card>
 </div>

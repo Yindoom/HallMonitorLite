@@ -1,4 +1,11 @@
-.loginBox {
-  text-align: center;
-  margin: 10%;
+.main-div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-card {
+  background-color: #ffd900;
+  width: 15%;
 }

@@ -15,7 +15,7 @@ describe("Testing login and logout", () => {
 
   it('should show navbar when logged in', () => {
     cy.contains('Dashboard');
-    cy.contains('User');
+    cy.contains('Userpage');
     cy.contains('Users');
     cy.contains('Devices');
     cy.contains('Device Outputs');

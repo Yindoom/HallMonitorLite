@@ -1,11 +1,20 @@
-<div *ngIf="user">
-  <div class="userDetail" >
-    <h3> Id: {{user.id}} </h3>
-    <h3> Username: {{user.username}} </h3>
-    <h3> Email: {{user.email}} </h3>
-    <h3> Role: {{user.role}} </h3>
-  </div>
-  <button mat-button (click)="updateUser(user.id)">Update User</button>
-
+<div class="main-div" style="margin-top: 40px;">
+  <mat-card>
+    <mat-card-content>
+      <mat-card style="background-color: white; margin: 25px; width: 91.5%;">
+        <div *ngIf="user">
+          <div class="userDetail" >
+            <h4>Id:</h4> {{user.id}} 
+            <h4>Username:</h4> {{user.username}}
+            <h4>Email:</h4> {{user.email}}
+            <h4>Role:</h4> {{user.role}}
+          </div>
+          <button mat-raised-button color="primary" style="float: right; margin-top: 40px; margin-right: -1.8%;" (click)="updateUser(user.id)">
+            <p style="color: #ffd900;">Update User</p>
+          </button>
+        </div>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
 </div>
 
