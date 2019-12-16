@@ -15,7 +15,6 @@ import {DeviceOutputComponent} from './components/device-output/device-output.co
 import {DeviceOutputCreateUpdateComponent} from './components/device-output-create-update/device-output-create-update.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {PasswordComponent} from './components/password/password.component';
-import {MatCardModule} from '@angular/material/card';
 import {PDFExportModule} from '@progress/kendo-angular-pdf-export';
 import {ChartsModule} from 'ng2-charts';
 import {MatInputModule} from '@angular/material/input';
