@@ -27,7 +27,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule, MatDialogModule, MatToolbarModule} from '@angular/material';
+import {MatNativeDateModule, MatDialogModule, MatToolbarModule, MatExpansionModule, MatCardModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
@@ -85,7 +85,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     MatNativeDateModule,
     MatDialogModule,
     MatToolbarModule,
-    NgxsModule.forRoot([UserState, DeviceState, DeviceOutputState])
+    NgxsModule.forRoot([UserState, DeviceState, DeviceOutputState]),
+    MatExpansionModule,
+    MatCardModule
   ],
   entryComponents: [
     UserCreateUpdateComponent,

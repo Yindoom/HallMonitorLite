@@ -63,7 +63,6 @@ export class DeviceOutputService {
   }
 
   getDeviceOutputByTimestampAndId(id: number, output) {
-    console.log(output);
     return this.httpClient.post(this.apiUrl + '/timeinterval?device_id=' + id, output);
   }
 }

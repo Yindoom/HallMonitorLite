@@ -5,7 +5,7 @@ import {AddDevice, GetById, GetDevices, RemoveDevice, UpdateDevice} from './devi
 
 export class DeviceStateModel {
   devices: Device[];
-  device: Device;
+  device: number;
 }
 
 @State<DeviceStateModel>({
@@ -77,7 +77,7 @@ export class DeviceState {
   getById({getState, patchState}: StateContext<DeviceStateModel>, {id}: GetById) {
     const state = getState();
     patchState({
-      device: state.devices.find(o => o.id === id)
+      device: id
     });
   }
 }

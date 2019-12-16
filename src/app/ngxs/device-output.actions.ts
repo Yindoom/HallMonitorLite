@@ -12,13 +12,13 @@ export class UpdateDeviceOutput{
   constructor(public id: number, public payload: DeviceOutput) {}
 }
 
-export class RemoveDeviceOutput{
+export class RemoveDeviceOutput {
   static readonly type = '[DeviceOutput] Remove';
 
   constructor(public id: number) {}
 }
 
-export class GetDeviceOutputs{
+export class GetDeviceOutputs {
   static readonly type = '[DeviceOutput] GetAll';
 
   constructor() {}

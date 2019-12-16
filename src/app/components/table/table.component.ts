@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {DeviceOutputService} from '../../services/model-services/device-output.service';
 import {MatDialog} from '@angular/material';
 import * as moment from 'moment';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import {DeviceOutputTableDetailsComponent} from '../device-output-table-details/device-output-table-details.component';
-
+import {Select, Store} from '@ngxs/store';
+import {DeviceState} from '../../ngxs/device.state';
+import {Observable} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -12,27 +15,33 @@ import {DeviceOutputTableDetailsComponent} from '../device-output-table-details/
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-  defaultHeaders = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  headers = this.defaultHeaders;
+  headers = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   rows = [];
-  orderNumber;
-  dayOfTheWeek;
-  defaultFromDate = moment().subtract(6, 'days').set({h: 0, m: 0, s: 0});
-  defaultToDate = moment();
-  numberOfCurrentWeek = moment().isoWeek();
-  timeInterval = 60;
-
   timeIntervalForm = new FormControl('');
 
-  constructor(private deviceOutputService: DeviceOutputService, private dialog: MatDialog) {}
+  orderNumber = 0;
+  defaultFromDate = moment().subtract(6, 'days').set({h: 0, m: 0, s: 0});
+  defaultToDate = moment();
+  timeInterval = 60;
+  selectedDeviceId;
+
+  @Select(DeviceState.getDeviceById) deviceId: Observable<any>;
+
+  constructor(private deviceOutputService: DeviceOutputService, private dialog: MatDialog, private router: Router) {}
 
   ngOnInit() {
+    this.deviceId.subscribe(value => {
+      if (value === null) {
+        this.router.navigateByUrl('/dashboard');
+      } else {
+        this.selectedDeviceId = value;
+      }
+    });
     this.updateTable(true);
   }
 
   updateTable(isUpdateDays) {
     this.orderNumber = 0;
-    this.dayOfTheWeek = this.defaultFromDate.isoWeekday();
     if (isUpdateDays === true) {
       this.getDaysForCurrentWeek();
     }
@@ -41,16 +50,16 @@ export class TableComponent implements OnInit {
   }
 
   updateTimeInterval() {
-    if (this.timeIntervalForm.value !== '') {
+    if (this.timeIntervalForm.value !== '' && this.timeIntervalForm.value > 10) {
       this.timeInterval = this.timeIntervalForm.value;
       this.updateTable(false);
     }
 }
 
   getDaysForCurrentWeek() {
-    if (this.defaultToDate.isoWeek() === this.numberOfCurrentWeek) {
-      let currentDay = this.defaultToDate.isoWeekday();
-      let newDateArray = [''];
+    if (this.defaultToDate.isoWeek() === moment().isoWeek()) {
+      const currentDay = this.defaultToDate.isoWeekday();
+      const newDateArray = [''];
       for (let i = currentDay + 1; i < 8; i++) {
         newDateArray.push(this.headers[i]);
       }
@@ -59,7 +68,7 @@ export class TableComponent implements OnInit {
       }
       this.headers = newDateArray;
     } else {
-      this.headers = this.defaultHeaders;
+      this.headers = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     }
   }
 
@@ -80,19 +89,13 @@ export class TableComponent implements OnInit {
   }
 
   getDeviceOutputInTimeInterval(fromDate, toDate, timeIntervalInMinutes) {
-    this.deviceOutputService.getDeviceOutputByTimestampAndId(1, {from_date: fromDate, to_date: toDate, interval: timeIntervalInMinutes}).subscribe(deviceOutput => {
-      console.log(deviceOutput);
-      for (let key in deviceOutput) {
+    this.deviceOutputService.getDeviceOutputByTimestampAndId(this.selectedDeviceId, {from_date: fromDate, to_date: toDate, interval: timeIntervalInMinutes})
+      .subscribe(deviceOutput => {
+      for (const key in deviceOutput) {
         let numberOfPeople = 0;
         if (deviceOutput[key].length === 0) {
-          let date = moment.utc(key).local();
-          // i guess i need this dunno why tho
-          /*if (this.dayOfTheWeek !== date.isoWeekday() && this.orderNumber !== 0) {
-            this.orderNumber = 0;
-            this.dayOfTheWeek = date.isoWeekday();*/
           if (this.orderNumber === this.rows.length - 1) {
             this.orderNumber = 0;
-            this.dayOfTheWeek = date.isoWeekday();
           } else {
             this.orderNumber++;
           }
@@ -109,22 +112,16 @@ export class TableComponent implements OnInit {
   }
 
   sortNumberOfPeopleByDayOfTheWeek(dateOfPicture, numberOfPeople) {
-    let date = moment.utc(dateOfPicture).local();
-    let dayOftheWeek = date.isoWeekday();
+    const dayOfTheWeek = moment.utc(dateOfPicture).local().isoWeekday();
 
     if (this.orderNumber === this.rows.length) {
       this.orderNumber = 0;
-      this.dayOfTheWeek = dayOftheWeek;
     }
-    /*if (this.dayOfTheWeek !== dayOftheWeek && this.orderNumber !== 0 || this.orderNumber === this.rows.length) {
-      this.orderNumber = 0;
-      this.dayOfTheWeek = dayOftheWeek;
-    }*/
-    this.updateValueInRow(dayOftheWeek, this.orderNumber, numberOfPeople);
+    this.updateValueInRow(dayOfTheWeek, this.orderNumber, numberOfPeople);
   }
 
-  updateValueInRow(dayOftheWeek, indexNumber, numberOfPeople) {
-    switch (dayOftheWeek) {
+  updateValueInRow(dayOfTheWeek, indexNumber, numberOfPeople) {
+    switch (dayOfTheWeek) {
       case 1:
         this.rows[indexNumber].Monday = numberOfPeople;
         break;
@@ -159,10 +156,10 @@ export class TableComponent implements OnInit {
     const fromDate = dateWithoutTime;
     const toDate = moment(dateWithoutTime).add(this.timeInterval, 'minutes');
 
-    this.deviceOutputService.getDeviceOutputByTimestampAndId(1, {from_date: fromDate, to_date: toDate, interval: this.timeInterval}).subscribe(deviceOutput => {
-      console.log(deviceOutput);
+    this.deviceOutputService.getDeviceOutputByTimestampAndId(this.selectedDeviceId, {from_date: fromDate, to_date: toDate, interval: this.timeInterval})
+      .subscribe(deviceOutput => {
       this.dialog.open(DeviceOutputTableDetailsComponent, {
-        data: deviceOutput
+        data: deviceOutput,
       }).afterClosed().subscribe(response => {
         this.updateValueInRow(dayOfTheWeek, this.rows.indexOf(row), response.numberOfPeople.toFixed(2));
       });
@@ -199,11 +196,12 @@ export class TableComponent implements OnInit {
 
   changeWeekWithArrow(isFuture) {
     let newWeek;
+    const numberOfCurrentWeek = moment().isoWeek();
 
-    if (isFuture === true && this.numberOfCurrentWeek !== this.defaultToDate.isoWeek()) {
+    if (isFuture === true && numberOfCurrentWeek !== this.defaultToDate.isoWeek()) {
        newWeek = moment(this.defaultToDate).add(1, 'weeks');
 
-       if (newWeek.isoWeek() === this.numberOfCurrentWeek) {
+       if (newWeek.isoWeek() === numberOfCurrentWeek) {
         this.defaultToDate = moment();
         this.defaultFromDate = moment().subtract(6, 'days').set({h: 0, m: 0, s: 0});
       } else {
