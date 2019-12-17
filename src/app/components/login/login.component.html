@@ -1,14 +1,14 @@
 <div class="main-div">
-    <mat-card style="margin-top: 15%;">
+    <mat-card style="margin-top: 15%; min-width: 250px; padding: 20px;">
         <mat-card style="width: 85%; background-color: white;">
             <mat-card-content>
                 <div class="loginBox">
                     <form [formGroup]="loginForm" (ngSubmit)="login()" class="form">
-                        <mat-form-field style="margin-left: 20%;">
+                        <mat-form-field style="margin-left: 20px; margin-right: 20px;">
                             <input matInput placeholder="Username" type="text" formControlName="username" id="username">
                         </mat-form-field>
                         <br>
-                        <mat-form-field style="margin-left: 20%;">
+                        <mat-form-field style="margin-left: 20px; margin-right: 20px;">
                             <input matInput placeholder="Password" type="password" formControlName="password" id="password">
                         </mat-form-field>
                         <br>
