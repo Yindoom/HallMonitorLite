@@ -4,7 +4,8 @@
       <mat-card>
         <mat-card-content>
           <div style="cursor:pointer;" (click)="clickOnDevice(device.id)" class="device-name">Device {{device.id}}
-            <mat-icon color="warn" style="float: left; font-size: 16px; margin-top: 5px;">fiber_manual_record</mat-icon>
+            <mat-icon *ngIf="checkHeartbeatDate(device.last_heartbeat)" style="float: left; font-size: 16px; margin-top: 5px; color: greenyellow;">fiber_manual_record</mat-icon>
+            <mat-icon *ngIf="!checkHeartbeatDate(device.last_heartbeat)" color="warn" style="float: left; font-size: 16px; margin-top: 5px;">fiber_manual_record</mat-icon>
             <mat-icon style="color: #ffd900; float: right; cursor:pointer;" (click)="clickOnDevice(device.id)">keyboard_arrow_right</mat-icon>
           </div>
           <mat-expansion-panel>

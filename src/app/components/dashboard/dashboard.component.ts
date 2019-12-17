@@ -9,6 +9,7 @@ import {GetDeviceOutputs} from '../../ngxs/device-output.actions';
 import {DeviceState} from '../../ngxs/device.state';
 import {GetById, GetDevices} from '../../ngxs/device.actions';
 import {Router} from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,5 +30,12 @@ export class DashboardComponent implements OnInit {
     this.store.dispatch(new GetById(deviceId)).subscribe(() => {
       this.router.navigateByUrl('/table');
     });
+  }
+
+  checkHeartbeatDate(heartbeatDate: any) {
+    const currentUtcDate = moment.utc(new Date()).utc().subtract(2, 'm').format('YYYY-MM-DD HH:mm:ss');
+    if (currentUtcDate < heartbeatDate) {
+      return true;
+    }
   }
 }
