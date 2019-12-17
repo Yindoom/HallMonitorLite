@@ -21,11 +21,4 @@ describe("Testing login and logout for user", () => {
     cy.contains('Userpage');
     cy.contains('Log Out');
   });
-
-  it('should show current user when clicking userpage', () => {
-    cy.contains('Userpage').click();
-    cy.location('pathname').should('eq', '/user');
-    cy.contains('cypressUser');
-    cy.contains('cypressUser@email.dk');
-  });
 });

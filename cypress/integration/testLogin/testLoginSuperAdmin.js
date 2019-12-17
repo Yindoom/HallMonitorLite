@@ -23,10 +23,4 @@ describe("Testing login and logout for superAdmin", () => {
     cy.contains('Devices');
     cy.contains('Log Out');
   });
-
-  it('should show current user when clicking userpage', () => {
-    cy.contains('Userpage').click();
-    cy.location('pathname').should('eq', '/user');
-    cy.contains('SuperAdmin');
-  });
 });

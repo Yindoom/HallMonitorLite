@@ -23,18 +23,4 @@ describe("Testing login and logout for Admin", () => {
     cy.contains('Devices');
     cy.contains('Log Out');
   });
-
-  it('should show current user when clicking userpage', () => {
-    cy.contains('Userpage').click();
-    cy.location('pathname').should('eq', '/user');
-    cy.contains('cypressAdmin');
-    cy.contains('cypressAdmin@email.dk');
-  });
-
-  it('should show user belonging to this admin when clicking Users', () => {
-    cy.contains('Users').click();
-    cy.location('pathname').should('eq', '/users');
-    cy.contains('User');
-    cy.contains('cypressUser@email.dk');
-  });
 });
