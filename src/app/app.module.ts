@@ -32,13 +32,13 @@ import {AppRoutingModule} from './app-routing.module';
 import {UserState} from './ngxs/user.state';
 import {DeviceOutputState} from './ngxs/device-output.state';
 import {DeviceState} from './ngxs/device.state';
-import { DeviceOutputTableDetailsComponent } from './components/device-output-table-details/device-output-table-details.component';
-import { H401Interceptor } from './services/http-interceptor';
+import {DeviceOutputTableDetailsComponent} from './components/device-output-table-details/device-output-table-details.component';
+import {H401Interceptor} from './services/http-interceptor';
 import {MomentModule} from 'ngx-moment';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { DeviceRuntimesUpdateComponent } from './components/device-runtimes-update/device-runtimes-update.component';
-import { DeviceHoursToRunBetweenUpdateComponent } from './components/device-hours-to-run-between-update/device-hours-to-run-between-update.component';
-import { DeviceCommandlineComponent } from './components/device-commandline/device-commandline.component';
+import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import {DeviceRuntimesUpdateComponent} from './components/device-runtimes-update/device-runtimes-update.component';
+import {DeviceHoursToRunBetweenUpdateComponent} from './components/device-hours-to-run-between-update/device-hours-to-run-between-update.component';
+import {DeviceCommandlineComponent} from './components/device-commandline/device-commandline.component';
 
 
 @NgModule({

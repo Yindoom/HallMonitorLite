@@ -3,9 +3,8 @@ import {Observable} from 'rxjs';
 import {UserState} from '../../ngxs/user.state';
 import {User} from '../../models/user.model';
 import {Select, Store} from '@ngxs/store';
-import {GetById, GetUserByIdFromDB, GetUsers, UpdateUser} from '../../ngxs/user.actions';
+import {GetById, GetUserByIdFromDB} from '../../ngxs/user.actions';
 import {AuthService} from '../../services/auth.service';
-import {UserService} from '../../services/model-services/user.service';
 import {UserCreateUpdateComponent} from '../user-create-update/user-create-update.component';
 import {MatDialog} from '@angular/material/dialog';
 
@@ -27,11 +26,11 @@ export class UserDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.store.dispatch(new GetUserByIdFromDB(this.authService.getLoggedInUserId()));
+    this.store.dispatch(new GetUserByIdFromDB(this.authService.getLoggedInUserId()));
 
-      this.editUser.subscribe(u => {
-        this.user = u;
-      });
+    this.editUser.subscribe(u => {
+      this.user = u;
+    });
   }
 
   updateUser(id: number) {

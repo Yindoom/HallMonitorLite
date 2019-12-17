@@ -1,7 +1,5 @@
 import {User} from '../models/user.model';
 
-// do we need to set the user? also should USER be in all caps?
-
 export class AddUser {
   static readonly type = '[User] Add';
 

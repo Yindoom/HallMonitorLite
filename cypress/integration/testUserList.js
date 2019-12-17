@@ -19,31 +19,4 @@ describe("Testing User", () => {
     cy.contains('Users').click();
     cy.location('pathname').should('eq', '/users');
   });
-  /*
-   it("Should create new user with role admin??", () => {
-     cy.get('[data-cy=createUser]').click();
-     cy.get('[data-cy=email]').type('email@email.dk');
-     cy.get('[data-cy=username]').type('newUser');
-     cy.get('[data-cy=password]').type('password');
-     cy.get('[data-cy=passwordTwo]').type('password');
-     cy.contains('Create').click();
-   });
-
-   it('should contain newly created user', () => {
-   //  cy.contains('email@email.dk').should('have.value', 'email@email.dk');
-     cy.contains('email@email.d;
-   });
-   /*
-     it("Should update new user with role admin", () => {
-       cy.get('[data-cy="updateUser]').last().click();
-       //type
-       cy.location('pathname').should('eq', '/users');
-     });
-
-     it("Should remove the new user with role admin", () => {
-       cy.get('[data-cy=deleteUser]').last().click();
-     });
-
-*/
-
 });

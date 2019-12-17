@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DeviceOutputService} from '../../services/model-services/device-output.service';
 import {MatDialog} from '@angular/material';
 import * as moment from 'moment';
 import {FormControl} from '@angular/forms';
 import {DeviceOutputTableDetailsComponent} from '../device-output-table-details/device-output-table-details.component';
-import {Select, Store} from '@ngxs/store';
+import {Select} from '@ngxs/store';
 import {DeviceState} from '../../ngxs/device.state';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
@@ -27,7 +27,8 @@ export class TableComponent implements OnInit {
 
   @Select(DeviceState.getDeviceById) deviceId: Observable<any>;
 
-  constructor(private deviceOutputService: DeviceOutputService, private dialog: MatDialog, private router: Router) {}
+  constructor(private deviceOutputService: DeviceOutputService, private dialog: MatDialog, private router: Router) {
+  }
 
   ngOnInit() {
     this.deviceId.subscribe(value => {
@@ -54,7 +55,7 @@ export class TableComponent implements OnInit {
       this.timeInterval = this.timeIntervalForm.value;
       this.updateTable(false);
     }
-}
+  }
 
   getDaysForCurrentWeek() {
     if (this.defaultToDate.isoWeek() === moment().isoWeek()) {
@@ -76,41 +77,47 @@ export class TableComponent implements OnInit {
     this.rows = [];
     const date = moment(this.defaultFromDate);
     do {
-      this.rows.push({Date: date.format('YYYY-MM-DD HH:mm:ss'),
+      this.rows.push({
+        Date: date.format('YYYY-MM-DD HH:mm:ss'),
         '': date.format('HH:mm') + '-' + date.add(interval, 'minutes').format('HH:mm'), Monday: '-',
         Tuesday: '-',
         Wednesday: '-',
         Thursday: '-',
         Friday: '-',
         Saturday: '-',
-        Sunday: '-'});
+        Sunday: '-'
+      });
     }
     while (date.isoWeekday() === this.defaultFromDate.isoWeekday());
   }
 
   getDeviceOutputInTimeInterval(fromDate, toDate, timeIntervalInMinutes) {
     // tslint:disable-next-line: max-line-length
-    this.deviceOutputService.getDeviceOutputByTimestampAndId(this.selectedDeviceId, {from_date: fromDate, to_date: toDate, interval: timeIntervalInMinutes})
+    this.deviceOutputService.getDeviceOutputByTimestampAndId(this.selectedDeviceId, {
+      from_date: fromDate,
+      to_date: toDate,
+      interval: timeIntervalInMinutes
+    })
       .subscribe(deviceOutput => {
-      // tslint:disable-next-line: forin
-      for (const key in deviceOutput) {
-        let numberOfPeople = 0;
-        if (deviceOutput[key].length === 0) {
-          if (this.orderNumber === this.rows.length - 1) {
-            this.orderNumber = 0;
+        // tslint:disable-next-line: forin
+        for (const key in deviceOutput) {
+          let numberOfPeople = 0;
+          if (deviceOutput[key].length === 0) {
+            if (this.orderNumber === this.rows.length - 1) {
+              this.orderNumber = 0;
+            } else {
+              this.orderNumber++;
+            }
           } else {
+            deviceOutput[key].forEach(thin => {
+              numberOfPeople += thin.number_of_people;
+            });
+            numberOfPeople = (numberOfPeople / deviceOutput[key].length);
+            this.sortNumberOfPeopleByDayOfTheWeek(key, numberOfPeople.toFixed(2));
             this.orderNumber++;
           }
-        } else {
-          deviceOutput[key].forEach(thin => {
-            numberOfPeople += thin.number_of_people;
-          });
-          numberOfPeople = (numberOfPeople / deviceOutput[key].length);
-          this.sortNumberOfPeopleByDayOfTheWeek(key, numberOfPeople.toFixed(2));
-          this.orderNumber++;
         }
-      }
-    });
+      });
   }
 
   sortNumberOfPeopleByDayOfTheWeek(dateOfPicture, numberOfPeople) {
@@ -159,14 +166,18 @@ export class TableComponent implements OnInit {
     const toDate = moment(dateWithoutTime).add(this.timeInterval, 'minutes');
 
     // tslint:disable-next-line: max-line-length
-    this.deviceOutputService.getDeviceOutputByTimestampAndId(this.selectedDeviceId, {from_date: fromDate, to_date: toDate, interval: this.timeInterval})
+    this.deviceOutputService.getDeviceOutputByTimestampAndId(this.selectedDeviceId, {
+      from_date: fromDate,
+      to_date: toDate,
+      interval: this.timeInterval
+    })
       .subscribe(deviceOutput => {
-      this.dialog.open(DeviceOutputTableDetailsComponent, {
-        data: deviceOutput,
-      }).afterClosed().subscribe(response => {
-        this.updateValueInRow(dayOfTheWeek, this.rows.indexOf(row), response.numberOfPeople.toFixed(2));
+        this.dialog.open(DeviceOutputTableDetailsComponent, {
+          data: deviceOutput,
+        }).afterClosed().subscribe(response => {
+          this.updateValueInRow(dayOfTheWeek, this.rows.indexOf(row), response.numberOfPeople.toFixed(2));
+        });
       });
-    });
   }
 
   getDayOfTheWeekAsNumber(dayOfTheWeek): number {
@@ -202,25 +213,25 @@ export class TableComponent implements OnInit {
     const numberOfCurrentWeek = moment().isoWeek();
 
     if (isFuture === true && numberOfCurrentWeek !== this.defaultToDate.isoWeek()) {
-       newWeek = moment(this.defaultToDate).add(1, 'weeks');
+      newWeek = moment(this.defaultToDate).add(1, 'weeks');
 
-       if (newWeek.isoWeek() === numberOfCurrentWeek) {
+      if (newWeek.isoWeek() === numberOfCurrentWeek) {
         this.defaultToDate = moment();
         this.defaultFromDate = moment().subtract(6, 'days').set({h: 0, m: 0, s: 0});
       } else {
-         this.defaultFromDate = moment(newWeek.startOf('isoWeek'));
-         this.defaultToDate = moment(newWeek.endOf('isoWeek'));
-       }
+        this.defaultFromDate = moment(newWeek.startOf('isoWeek'));
+        this.defaultToDate = moment(newWeek.endOf('isoWeek'));
+      }
 
-       this.updateTable(true);
+      this.updateTable(true);
 
     } else if (isFuture === false) {
-       newWeek = moment(this.defaultToDate).subtract(1, 'weeks');
+      newWeek = moment(this.defaultToDate).subtract(1, 'weeks');
 
-       this.defaultFromDate = moment(newWeek.startOf('isoWeek'));
-       this.defaultToDate = moment(newWeek.endOf('isoWeek'));
+      this.defaultFromDate = moment(newWeek.startOf('isoWeek'));
+      this.defaultToDate = moment(newWeek.endOf('isoWeek'));
 
-       this.updateTable(true);
+      this.updateTable(true);
     }
   }
 }

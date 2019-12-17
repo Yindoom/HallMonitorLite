@@ -3,7 +3,6 @@ import {AuthService} from '../../services/auth.service';
 import {AuthGuard} from '../../guards/auth.guard';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AdminGuard} from '../../guards/admin.guard';
-import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -19,16 +18,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService,
               private authGuard: AuthGuard,
-              private adminGuard: AdminGuard,
-              private route: ActivatedRoute,
-              private router: Router) {
+              private adminGuard: AdminGuard) {
   }
 
   ngOnInit() {
     this.init();
 
     //shows the navbar when you refresh page
-    if (this.authService.getLoggedInUserId() !== null ) {
+    if (this.authService.getLoggedInUserId() !== null) {
       this.isLoggedIn = true;
       this.init();
     }
@@ -51,7 +48,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-    //this.logout();
   }
 
   logout() {

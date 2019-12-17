@@ -1,13 +1,14 @@
 <div *ngIf="data.length > 0">
-<form [formGroup]="deviceOutputForm" (ngSubmit)="updateDeviceOutput()">
-  <div *ngFor="let deviceOutput of data">
-    {{deviceOutput.timestamp | date: 'yyy-MM-dd HH:mm'}}
-    <mat-form-field>
-      <input matInput type="number" value="{{deviceOutput.number_of_people}}" placeholder="number of people" formControlName="{{deviceOutput.id}}">
-    </mat-form-field>
-  </div>
-  <button mat-button type="submit">Update</button>
-</form>
+  <form [formGroup]="deviceOutputForm" (ngSubmit)="updateDeviceOutput()">
+    <div *ngFor="let deviceOutput of data">
+      {{deviceOutput.timestamp | date: 'yyy-MM-dd HH:mm'}}
+      <mat-form-field>
+        <input matInput type="number" value="{{deviceOutput.number_of_people}}" placeholder="number of people"
+               formControlName="{{deviceOutput.id}}">
+      </mat-form-field>
+    </div>
+    <button mat-button type="submit">Update</button>
+  </form>
 </div>
 
 <div *ngIf="data.length === 0">

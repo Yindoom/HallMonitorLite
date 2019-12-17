@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { SharingService } from 'src/app/services/sharing.service';
-import { MqttService } from 'src/app/services/mqtt.service';
+import {Component, OnInit} from '@angular/core';
+import {SharingService} from 'src/app/services/sharing.service';
+import {MqttService} from 'src/app/services/mqtt.service';
 
 @Component({
   selector: 'app-device-commandline',
@@ -13,7 +13,8 @@ export class DeviceCommandlineComponent implements OnInit {
   constructor(
     private sharingService: SharingService,
     private mqttService: MqttService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
   }

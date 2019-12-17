@@ -1,6 +1,7 @@
 <form [formGroup]="deviceForm">
   <mat-form-field>
-    <input matInput data-cy="comment" type="text" placeholder="comment" formControlName="comment" minlength="4" required>
+    <input matInput data-cy="comment" type="text" placeholder="comment" formControlName="comment" minlength="4"
+           required>
   </mat-form-field>
   <button mat-button (click)="deviceUpdateCreate()">{{btnMessage}}</button>
 </form>

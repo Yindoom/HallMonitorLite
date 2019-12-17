@@ -1,31 +1,36 @@
 import {DeviceOutput} from '../models/deviceOutput.model';
 
-export class AddDeviceOutput{
+export class AddDeviceOutput {
   static readonly type = '[DeviceOutput] Add';
 
-  constructor(public payload: DeviceOutput) {}
+  constructor(public payload: DeviceOutput) {
+  }
 }
 
-export class UpdateDeviceOutput{
+export class UpdateDeviceOutput {
   static readonly type = '[DeviceOutput] Update';
 
-  constructor(public id: number, public payload: DeviceOutput) {}
+  constructor(public id: number, public payload: DeviceOutput) {
+  }
 }
 
 export class RemoveDeviceOutput {
   static readonly type = '[DeviceOutput] Remove';
 
-  constructor(public id: number) {}
+  constructor(public id: number) {
+  }
 }
 
 export class GetDeviceOutputs {
   static readonly type = '[DeviceOutput] GetAll';
 
-  constructor() {}
+  constructor() {
+  }
 }
 
 export class GetById {
   static readonly type = '[DeviceOutput] Get';
 
-  constructor(public id: number) {}
+  constructor(public id: number) {
+  }
 }

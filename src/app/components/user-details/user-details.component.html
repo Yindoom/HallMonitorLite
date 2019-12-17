@@ -3,13 +3,14 @@
     <mat-card-content>
       <mat-card style="background-color: white; margin: 25px; width: 91.5%;">
         <div *ngIf="user">
-          <div class="userDetail" >
-            <h4>Id:</h4> {{user.id}} 
+          <div class="userDetail">
+            <h4>Id:</h4> {{user.id}}
             <h4>Username:</h4> {{user.username}}
             <h4>Email:</h4> {{user.email}}
             <h4>Role:</h4> {{user.role}}
           </div>
-          <button mat-raised-button color="primary" style="float: right; margin-top: 40px; margin-right: -1.8%;" (click)="updateUser(user.id)">
+          <button mat-raised-button color="primary" style="float: right; margin-top: 40px; margin-right: -1.8%;"
+                  (click)="updateUser(user.id)">
             <p style="color: #ffd900;">Update User</p>
           </button>
         </div>

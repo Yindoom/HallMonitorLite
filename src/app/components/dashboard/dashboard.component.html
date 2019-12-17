@@ -1,6 +1,6 @@
 <div class="main-div">
   <div *ngIf="deviceList">
-  <div  *ngFor="let device of deviceList | async" id="device-container">
+    <div *ngFor="let device of deviceList | async" id="device-container">
       <mat-card>
         <mat-card-content>
           <div style="cursor:pointer;" (click)="clickOnDevice(device.id)" class="device-name">Device {{device.id}}
@@ -17,11 +17,11 @@
             <!-- Content after expansion -->
             <div class="expansion-content">
               <div class="device-description">Comment: {{device.comment}}</div>
-              <div class="device-heartbeat">Last heartbeat: {{device.last_heartbeat}} </div>
+              <div class="device-heartbeat">Last heartbeat: {{device.last_heartbeat}}</div>
             </div>
           </mat-expansion-panel>
         </mat-card-content>
       </mat-card>
-  </div>
+    </div>
   </div>
 </div>

@@ -5,7 +5,7 @@ import {Select, Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
 import {DeviceState} from '../../ngxs/device.state';
 import {Device} from '../../models/device.model';
-import {AddDevice, GetDevices, UpdateDevice} from '../../ngxs/device.actions';
+import {AddDevice, UpdateDevice} from '../../ngxs/device.actions';
 
 @Component({
   selector: 'app-device-create-update',

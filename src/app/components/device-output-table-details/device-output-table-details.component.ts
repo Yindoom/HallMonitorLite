@@ -17,9 +17,11 @@ export class DeviceOutputTableDetailsComponent implements OnInit {
 
   deviceOutputForm = new FormGroup({});
   dateOfSelectedOutput;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private dialogRef: MatDialogRef<DeviceOutputTableDetailsComponent>,
-              private store: Store) {}
+              private store: Store) {
+  }
 
   @Select(DeviceState.getDeviceById) deviceId: Observable<any>;
 
@@ -28,7 +30,7 @@ export class DeviceOutputTableDetailsComponent implements OnInit {
       this.data = this.data[key];
       this.dateOfSelectedOutput = moment.utc(key).add(15, 'seconds').format('YYYY-MM-DD HH:mm:ss');
     }
-    if (this.data.length === 0 ) {
+    if (this.data.length === 0) {
       this.deviceOutputForm.addControl('number_of_people', new FormControl(''));
     } else {
       this.fillFormControls(this.data);
@@ -47,7 +49,11 @@ export class DeviceOutputTableDetailsComponent implements OnInit {
       if (Number(this.deviceOutputForm.value[deviceId]) !== deviceOutput[0].number_of_people && this.deviceOutputForm.value[deviceId] !== '') {
         deviceOutput[0].number_of_people = Number(this.deviceOutputForm.value[deviceId]);
         deviceOutput[0].timestamp = moment.utc(deviceOutput[0].timestamp).format('YYYY-MM-DD HH:mm:ss');
-        this.store.dispatch(new UpdateDeviceOutput(deviceOutput[0].id, {device_id: deviceOutput[0].device_id, number_of_people: deviceOutput[0].number_of_people, timestamp: deviceOutput[0].timestamp})).subscribe();
+        this.store.dispatch(new UpdateDeviceOutput(deviceOutput[0].id, {
+          device_id: deviceOutput[0].device_id,
+          number_of_people: deviceOutput[0].number_of_people,
+          timestamp: deviceOutput[0].timestamp
+        })).subscribe();
       }
       const averagePeople = (this.data.reduce((a, b) => a + (b.number_of_people), 0) / this.data.length);
       this.dialogRef.close({numberOfPeople: averagePeople});
