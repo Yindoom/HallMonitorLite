@@ -20,14 +20,14 @@
     <button mat-mini-fab (click)="changeWeekWithArrow(true)" color="primary" style="color: #ffd900;">
       <mat-icon>keyboard_arrow_right</mat-icon>
     </button>
-    <table>
+    <table style="width: 1000px; height: 750px;">
       <tr>
-        <th *ngFor="let col of headers">
+        <th *ngFor="let col of headers" style="width: 40px; height: 40px;">
           {{col}}
         </th>
       </tr>
-      <tr *ngFor="let row of rows">
-        <td *ngFor="let col of headers" (click)="getDeviceOutputForValue(row, col)">
+      <tr *ngFor="let row of rows" style="width: 40px; height: 20px;">
+        <td *ngFor="let col of headers" style="width: 40px; height: 20px;" (click)="getDeviceOutputForValue(row, col)">
           {{row[col]}}
         </td>
       </tr>
