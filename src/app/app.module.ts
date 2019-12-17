@@ -11,7 +11,6 @@ import {DeviceCreateUpdateComponent} from './components/device-create-update/dev
 import {UserDetailsComponent} from './components/user-details/user-details.component';
 import {AdminPageComponent} from './components/admin-page/admin-page.component';
 import {DeviceComponent} from './components/device/device.component';
-import {DeviceOutputComponent} from './components/device-output/device-output.component';
 import {DeviceOutputCreateUpdateComponent} from './components/device-output-create-update/device-output-create-update.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {PasswordComponent} from './components/password/password.component';
@@ -54,7 +53,6 @@ import { DeviceCommandlineComponent } from './components/device-commandline/devi
     UserDetailsComponent,
     AdminPageComponent,
     DeviceComponent,
-    DeviceOutputComponent,
     NavbarComponent,
     DeviceOutputTableDetailsComponent,
     PasswordComponent,
@@ -67,7 +65,7 @@ import { DeviceCommandlineComponent } from './components/device-commandline/devi
     MomentModule,
     MomentModule.forRoot({
       relativeTimeThresholdOptions: {
-        'm': 59
+        m: 59
       }
     }),
     BrowserModule,
