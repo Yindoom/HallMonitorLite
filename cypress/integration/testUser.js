@@ -24,29 +24,6 @@ describe("Testing User", () => {
     cy.contains('Id:');
     cy.contains('Username:');
     cy.contains('Email:');
-   // cy.contains('oldEmail@email.dk');
-    cy.contains('Admin'); //or whichever user we decide to do it with
+    cy.contains('Admin');
   });
-/*
-  it("Should update the logged in user", () => {
-    cy.contains('Update User').click();
-    cy.contains('oldEmail@email.dk').clear().type('newEmail@email.dk'); //type, might need get+ id instead of contains
-    cy.contains('Update').click();
-
-  });
-
-  it("Should see the newly updated user info", () => {
-    cy.contains('newEmail@email.dk');
-  });
-
-  it("Should update the logged in user to the original information", () => {
-    cy.contains('Update User').click();
-    cy.contains('').clear().type('oldEmail@email.dk'); //type, might need get+ id instead of contains
-    cy.contains('Update').click();
-  });
-
-  it("Should see the original user info", () => {
-    cy.contains('oldEmail@email.dk');
-  });
-*/
 });

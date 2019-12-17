@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { SharingService } from 'src/app/services/sharing.service';
-import { MqttService } from 'src/app/services/mqtt.service';
+import {Component, OnInit} from '@angular/core';
+import {SharingService} from 'src/app/services/sharing.service';
+import {MqttService} from 'src/app/services/mqtt.service';
 
 @Component({
   selector: 'app-device-hours-to-run-between-update',
@@ -13,7 +13,8 @@ export class DeviceHoursToRunBetweenUpdateComponent implements OnInit {
   constructor(
     private sharingService: SharingService,
     private mqttService: MqttService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
   }
@@ -21,8 +22,8 @@ export class DeviceHoursToRunBetweenUpdateComponent implements OnInit {
   updateHoursToRunBetween(fromHour: number, toHour: number) {
     if (fromHour && toHour) {
       this.mqttService
-      .updateHoursToRunBetween(this.deviceIds, fromHour, toHour)
-      .subscribe();
+        .updateHoursToRunBetween(this.deviceIds, fromHour, toHour)
+        .subscribe();
     }
   }
 }

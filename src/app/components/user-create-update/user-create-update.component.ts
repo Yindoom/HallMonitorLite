@@ -5,7 +5,7 @@ import {User} from 'src/app/models/user.model';
 import {Select, Store} from '@ngxs/store';
 import {UserState} from '../../ngxs/user.state';
 import {Observable} from 'rxjs';
-import {AddUser, UpdateUser, GetById} from '../../ngxs/user.actions';
+import {AddUser, UpdateUser} from '../../ngxs/user.actions';
 
 @Component({
   selector: 'app-user-create-update',

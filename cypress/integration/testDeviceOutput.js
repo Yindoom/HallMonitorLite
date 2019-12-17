@@ -16,12 +16,7 @@ describe("Testing Device Output", () => {
   });
 
   it("Should test deviceOutput functionality while logged in", () => {
-
     cy.contains('Device 1').click();
-    // maybe add contains?  cy.contains('Logout');
-    cy.location('pathname').should('eq', '/table'); //maybe empty
+    cy.location('pathname').should('eq', '/table');
   });
-
-//test create,read update,read delete,read deviceoutput
-
 });

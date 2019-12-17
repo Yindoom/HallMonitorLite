@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { LoginDTO } from 'src/app/models/loginDTO.model';
-import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl} from '@angular/forms';
+import {LoginDTO} from 'src/app/models/loginDTO.model';
+import {AuthService} from 'src/app/services/auth.service';
+import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -18,9 +18,11 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private router: Router,
-              private snack: MatSnackBar) {}
+              private snack: MatSnackBar) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   login() {
     const dto: LoginDTO = this.loginForm.value;
@@ -40,6 +42,6 @@ export class LoginComponent implements OnInit {
   }
 
   openSnack(msg: string) {
-    this.snack.open(msg, 'Ok', { duration: 3000 });
+    this.snack.open(msg, 'Ok', {duration: 3000});
   }
 }

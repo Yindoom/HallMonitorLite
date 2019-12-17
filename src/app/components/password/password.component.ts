@@ -1,8 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Select, Store } from '@ngxs/store';
-import { AuthService } from 'src/app/services/auth.service';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {MatDialogRef} from '@angular/material/dialog';
+import {AuthService} from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-password',
@@ -17,16 +16,18 @@ export class PasswordComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<PasswordComponent>,
     private authService: AuthService
-  ) {}
+  ) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
-  // login again
-  doSomethingWithLogin() {
-    
+  // login again if tokens are not fresh enough
+  loginAndSetTokens() {
+
     const login = this.passwordForm.value;
     login.username = this.authService.getUsername();
-   
+
     this.authService.login(login).subscribe(token => {
       localStorage.setItem('access-token', token.access_token);
       localStorage.setItem('refresh-token', token.refresh_token);

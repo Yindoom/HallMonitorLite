@@ -30,12 +30,4 @@ describe("Testing device guards", () => {
     cy.contains('Page not found');
     cy.location('pathname').should('eq', '/asdasd');
   });
-
-
-  it("Should test security while logged in", () => {
-
-    // maybe add contains?  cy.contains('Logout');
-   // cy.location('pathname').should('eq', '/'); //maybe empty
-  });
-
 });

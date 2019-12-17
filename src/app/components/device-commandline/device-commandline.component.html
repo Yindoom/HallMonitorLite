@@ -1,31 +1,32 @@
 <mat-form-field style="width: 99.5%;">
-    <p>Commands will be executed in /bin</p>
-    <input matInput type="text" style="width: 83%;" #command>
+  <p>Commands will be executed in /bin</p>
+  <input matInput type="text" style="width: 83%;" #command>
 </mat-form-field>
 <button mat-mini-fab color="primary" style="float: right;" (click)="commandline(command.value)">
-    <mat-icon style="color: #ffd900;">done</mat-icon>
+  <mat-icon style="color: #ffd900;">done</mat-icon>
 </button>
 <div class="tooltip">Need Commandline help?
-    <p style="padding: 10px;" class="tooltiptext">
-        Remember to add the path where you want to run the command if necessary, fx mkdir /home/pi/hallmonitor_lite/hello_world.<br>
-        Usefull command sequences:<br>
-        <br>     
-        For rebooting:<br>
-            sudo reboot<br>
-        <br>
-        For starting the ssh tunnel service from the Raspberry Pi to the backend:<br>
-            sudo systemctl enable autossh-rpi-tunnel.service<br>
-            sudo systemctl start autossh-rpi-tunnel.service<br>
-        <br>      
-        Remember to stop the  the ssh tunnel service from the Raspberry Pi to the backend:<br>
-            sudo systemctl stop autossh-rpi-tunnel.service<br>
-            sudo systemctl disable autossh-rpi-tunnel.service<br>
-        <br>
-        For connecting trough the tunnel on the backend type:<br>
-            ssh pi@localhost -p 9001<br>
-        9001 is the port used by device 1.<br>
-        <br>
-        For updating the code:<br>
-            cd /home/pi/hallmonitor_lite/ && git pull
-        </p>
+  <p style="padding: 10px;" class="tooltiptext">
+    Remember to add the path where you want to run the command if necessary, fx mkdir
+    /home/pi/hallmonitor_lite/hello_world.<br>
+    Usefull command sequences:<br>
+    <br>
+    For rebooting:<br>
+    sudo reboot<br>
+    <br>
+    For starting the ssh tunnel service from the Raspberry Pi to the backend:<br>
+    sudo systemctl enable autossh-rpi-tunnel.service<br>
+    sudo systemctl start autossh-rpi-tunnel.service<br>
+    <br>
+    Remember to stop the the ssh tunnel service from the Raspberry Pi to the backend:<br>
+    sudo systemctl stop autossh-rpi-tunnel.service<br>
+    sudo systemctl disable autossh-rpi-tunnel.service<br>
+    <br>
+    For connecting trough the tunnel on the backend type:<br>
+    ssh pi@localhost -p 9001<br>
+    9001 is the port used by device 1.<br>
+    <br>
+    For updating the code:<br>
+    cd /home/pi/hallmonitor_lite/ && git pull
+  </p>
 </div>

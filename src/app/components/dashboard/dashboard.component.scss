@@ -1,4 +1,4 @@
-.main-div{
+.main-div {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -40,7 +40,7 @@ div {
   visibility: visible;
 }
 
-.mat-card:not([class*=mat-elevation-z]),.mat-card {
+.mat-card:not([class*=mat-elevation-z]), .mat-card {
   box-shadow: none;
   border-radius: 0px;
   padding: 0px;
@@ -57,8 +57,7 @@ div {
   font-size: 18px;
 }
 
-.mat-expansion-panel:not([class*=mat-elevation-z])
-{
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
   box-shadow: none;
 }
 

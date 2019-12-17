@@ -23,27 +23,4 @@ describe("Testing Device", () => {
   it("Should see a list of devices", () => {
     cy.contains('Comment:');
   });
-
-  /*
-  it("Should create a new device", () => {
-    cy.get('[data-cy=createDevice]').click();
-    cy.get('[data-cy=comment]').type('New Device From Cypress');
-    cy.contains('Create').click();
-  });
-
-  it("Should see the newly created device", () => {
-    cy.contains('New Device From Cypress');
-  });
-
-    it("Should update device", () => {
-      cy.get('[data-cy=updateDevice]').last().click();
-      cy.get('[data-cy=comment]').type('Edited Device From Cypress');
-      cy.contains('Edited Device From Cypress');
-    });
-
-      it("Should remove device", () => {
-        cy.get('[data-cy=deleteDevice]').last().click();
-        //check it's not there
-      });
-  */
 });

@@ -11,10 +11,10 @@ import {AdminGuard} from './guards/admin.guard';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
+  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'table', component: TableComponent , canActivate: [AuthGuard]},
+  {path: 'table', component: TableComponent, canActivate: [AuthGuard]},
   {path: 'user', component: UserDetailsComponent, canActivate: [AuthGuard]},
   {path: 'users', component: AdminPageComponent, canActivate: [AdminGuard]},
   {path: 'devices', component: DeviceComponent, canActivate: [AdminGuard]},

@@ -5,8 +5,7 @@ import {Observable} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Select, Store} from '@ngxs/store';
 import {DeviceOutput} from '../../models/deviceOutput.model';
-import {Device} from '../../models/device.model';
-import {AddDeviceOutput, GetDeviceOutputs, UpdateDeviceOutput} from '../../ngxs/device-output.actions';
+import {AddDeviceOutput, UpdateDeviceOutput} from '../../ngxs/device-output.actions';
 
 @Component({
   selector: 'app-device-output-create-update',

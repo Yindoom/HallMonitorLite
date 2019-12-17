@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ConnectionService } from '../connection.service';
-import { Device } from '../../models/device.model';
-import { Observable } from 'rxjs';
-import { AuthService } from '../auth.service';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ConnectionService} from '../connection.service';
+import {Device} from '../../models/device.model';
+import {Observable} from 'rxjs';
+import {AuthService} from '../auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeviceService {
   private apiUrl: string;
+
   constructor(
     private httpClient: HttpClient,
     private authService: AuthService,
@@ -37,7 +38,7 @@ export class DeviceService {
       this.apiUrl,
       device,
       this.authService.getHttpOptions()
-    ); // JSON.stringify(device)
+    );
   }
 
   updateDevice(id, device: Device) {
