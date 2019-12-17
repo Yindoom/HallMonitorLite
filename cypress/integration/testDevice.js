@@ -5,14 +5,13 @@ describe("Testing Device", () => {
     cy.visit("http://localhost:4200/login");
     cy.get('#username').type('Admin').should('have.value', 'Admin');
     cy.get('#password').type('admin').should('have.value', 'admin');
-    cy.contains('Log in').click();
+    cy.get('#loginBtn').click();
     cy.location('pathname').should('eq', '/dashboard');
   });
 
   after(function () {
     // runs once after all tests in the block
     cy.contains('Log Out').click();
-    cy.contains('Log in');
     cy.location('pathname').should('eq', '/login');
   });
 

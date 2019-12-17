@@ -9,7 +9,7 @@ describe("Testing login and logout", () => {
   });
 
   it("Should log in", () => {
-    cy.contains('Log in').click();
+    cy.get('#loginBtn').click();
     cy.location('pathname').should('eq', '/dashboard');
   });
 
@@ -18,13 +18,11 @@ describe("Testing login and logout", () => {
     cy.contains('Userpage');
     cy.contains('Users');
     cy.contains('Devices');
-    cy.contains('Device Outputs');
     cy.contains('Log Out');
   });
 
   it("Should log out", () => {
     cy.contains('Log Out').click();
-    cy.contains('Log in');
     cy.location('pathname').should('eq', '/login');
   })
 });
