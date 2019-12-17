@@ -4,6 +4,9 @@
   justify-content: center;
   align-items: center;
   margin-top: 26px;
+  min-width: 1000px;
+  min-height: 750px;
+  position: absolute;
 }
 
 .table {
@@ -13,7 +16,7 @@
 
 #drag:hover {
   cursor: pointer;
-  background-color: #eeeeee;
+  background-color: #89cff0 ;
 }
 
 .orderHeader {
@@ -21,7 +24,7 @@
 }
 
 .orderHeader:hover {
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .table-cell {
@@ -29,7 +32,7 @@
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: rgba(215, 235, 253, 0.571);
 }
 
 
