@@ -1,16 +1,19 @@
-describe("Testing login and logout", () => {
+describe("Testing login and logout for superAdmin", () => {
 
-  it("Should fill in username and password", () => {
+  before(() => {
+    // runs once before all tests in the block
     cy.visit("http://localhost:4200/login");
     cy.get('#username').type('Admin', {delay: 100}).should('have.value', 'Admin');
-    //  cy.contains('Username').type('Admin').should('have.value', 'Admin'); // better practice
-
     cy.get('#password').type('admin', {delay: 100}).should('have.value', 'admin');
-  });
 
-  it("Should log in", () => {
     cy.get('#loginBtn').click();
     cy.location('pathname').should('eq', '/dashboard');
+  });
+
+  after(() => {
+    // runs once after all tests in the block
+    cy.contains('Log Out').click();
+    cy.location('pathname').should('eq', '/login');
   });
 
   it('should show navbar when logged in', () => {
@@ -21,8 +24,9 @@ describe("Testing login and logout", () => {
     cy.contains('Log Out');
   });
 
-  it("Should log out", () => {
-    cy.contains('Log Out').click();
-    cy.location('pathname').should('eq', '/login');
-  })
+  it('should show current user when clicking userpage', () => {
+    cy.contains('Userpage').click();
+    cy.location('pathname').should('eq', '/user');
+    cy.contains('SuperAdmin');
+  });
 });
