@@ -8,6 +8,7 @@ import {Select} from '@ngxs/store';
 import {DeviceState} from '../../ngxs/device.state';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
+import { Device } from 'src/app/models/device.model';
 
 @Component({
   selector: 'app-table',
@@ -25,17 +26,17 @@ export class TableComponent implements OnInit {
   timeInterval = 60;
   selectedDeviceId;
 
-  @Select(DeviceState.getDeviceById) deviceId: Observable<any>;
+  @Select(DeviceState.getDeviceById) device: Observable<Device>;
 
   constructor(private deviceOutputService: DeviceOutputService, private dialog: MatDialog, private router: Router) {
   }
 
   ngOnInit() {
-    this.deviceId.subscribe(value => {
+    this.device.subscribe(value => {
       if (value === null) {
         this.router.navigateByUrl('/dashboard');
       } else {
-        this.selectedDeviceId = value;
+        this.selectedDeviceId = value.id;
       }
     });
     this.updateTable(true);
